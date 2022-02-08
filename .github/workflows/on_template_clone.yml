@@ -1,0 +1,22 @@
+# jobs to trigger after cloning the interview template
+name: On Template Clone
+
+on: workflow_dispatch
+
+jobs:
+  remove-dependabot:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+
+      - name: configure git
+        run: |
+          git config --global user.name "${{ github.actor }}"
+          git config --global user.email "${{ github.actor }}@users.noreply.github.com"
+
+      - name: Remove dependabot config
+        run: |
+          git rm -f ./.github/dependabot.yml
+          git commit -m 'remove dependabot'
+          git push origin master

@@ -1,7 +1,7 @@
 import { FunctionComponent } from 'react';
 
 const Hello: FunctionComponent = () => {
-  return <h2>Testing</h2>;
+  return <div className="text-8xl font-bold underline">Hey there</div>;
 };
 
 export default Hello;

@@ -9,7 +9,8 @@
   ],
   "scripts": {
     "postinstall": "husky install && patch-package",
-    "start": "run-p start:js start:server",
+    "dev": "cd next && yarn dev",
+    "start": "cd next && yarn start",
     "build": "run-s build:js build:server",
     "test": "run-s eslint prettier:check jest",
     "jest": "react-scripts test --env=jsdom",

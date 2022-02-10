@@ -6,13 +6,10 @@ export const checkIfUserIsLoggedIn = (): boolean => {
   //   console.log('Window is undefined - cannot check JWT');
   //   return null;
   // }
-
-  console.log(92133812345812);
+  // ^Fixed by using useEffect()
 
   const jwt: string | null = localStorage.getItem('jwt');
   const validJwt: boolean = jwtIsValid(jwt);
-
-  console.log('jwt = ', jwt);
 
   return jwtIsValid(jwt);
 };

@@ -1,14 +1,16 @@
 import { FunctionComponent, useEffect } from 'react';
-import StartGame from '../Buttons/StartGame';
+import StartGameBtn from '../Buttons/StartGameBtn';
 import Logout from '../Buttons/Authentication/Logout';
 import Login from '../Buttons/Authentication/Login';
 import Register from '../Buttons/Authentication/Register';
-import { atom, useRecoilState } from 'recoil';
-import { loggedInState } from '../../recoil/atoms';
+import { useRecoilState } from 'recoil';
+import { loggedInState, numCardsInDeckState } from '../../recoil/atoms';
 import { checkIfUserIsLoggedIn } from '../../utils/auth';
 
 const MainMenu: FunctionComponent = () => {
   const [loggedIn, setLoggedIn] = useRecoilState(loggedInState);
+  // const [, setGameInProgress] = useRecoilState(gameInProgressState);
+  const [numCardsInDeck, setNumCardsInDeck] = useRecoilState(numCardsInDeckState);
 
   const loggedOutButtons = (
     <>
@@ -24,9 +26,9 @@ const MainMenu: FunctionComponent = () => {
   );
 
   useEffect(() => {
-    console.log(`loggedIn => `, loggedIn);
     if (loggedIn === null) {
       setLoggedIn(checkIfUserIsLoggedIn());
+      // setGameInProgress(localStorage.getItem('gameInProgress') === 'true' ? true : false);
     }
   }, []);
 
@@ -34,7 +36,19 @@ const MainMenu: FunctionComponent = () => {
 
   return (
     <div className="flex flex-col justify-center items-center h-screen">
-      <StartGame />
+      <StartGameBtn />
+      <div className="flex">
+        <span className="font-courierPrimeBold">
+          Cards per suit {numCardsInDeck / 4 < 10 && '\u00A0'}({numCardsInDeck / 4}):
+        </span>
+        <input
+          type="range"
+          min="2"
+          max="20"
+          value={numCardsInDeck / 4}
+          onChange={(e) => setNumCardsInDeck(parseInt(e.target.value) * 4)}
+        />
+      </div>
       <div className="mt-0" />
       {authButtons}
     </div>

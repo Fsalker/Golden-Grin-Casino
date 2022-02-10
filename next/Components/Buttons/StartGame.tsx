@@ -1,4 +1,4 @@
-import { ButtonComponent } from '../types/types';
+import { ButtonComponent } from '../types';
 import LargeButton from './Wrappers/LargeButton';
 
 const StartGame: ButtonComponent = () => {

@@ -4,7 +4,7 @@ import LargeButton from '../Wrappers/LargeButton';
 const Register: FunctionComponent = () => {
   return (
     <div>
-      <LargeButton>Register (disabled)</LargeButton>
+      <LargeButton>Register</LargeButton>
     </div>
   );
 };

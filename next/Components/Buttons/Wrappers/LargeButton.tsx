@@ -1,6 +1,6 @@
-import { FunctionComponent } from 'react';
+import { LargeButtonType } from '../../types';
 
-const LargeButton: FunctionComponent = ({ children }) => {
+const LargeButton: LargeButtonType = ({ children }) => {
   return (
     <div
       className="cursor-pointer select-none font-alfaSlabOne

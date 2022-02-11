@@ -1,6 +1,12 @@
-import { cardsLeftState } from '../../recoil/atoms';
-import { useRecoilState } from 'recoil';
-import { CardParams } from '../types';
+import { CardSymbols } from '../types';
+
+export type CardParams = {
+  cardNumber: string;
+  cardSymbol: CardSymbols;
+  cardIndex: number;
+  canRotateCards: boolean;
+};
+
 const Card = ({ cardNumber, cardSymbol, cardIndex, canRotateCards }: CardParams) => {
   const color = cardSymbol === '♣' || cardSymbol === '♠' ? 'black' : '#F64242';
 

@@ -38,16 +38,7 @@ const DrawnCards: FunctionComponent = () => {
     );
   });
 
-  return (
-    <div className="flex justify-center">
-      {cards}
-      {/*<Card cardNumber={'7'} cardSymbol={'♥'} cardIndex={0} />*/}
-      {/*<Card cardNumber={'7'} cardSymbol={'♣'} cardIndex={1} />*/}
-      {/*<Card cardNumber={'7'} cardSymbol={'♦'} cardIndex={2} />*/}
-      {/*<Card cardNumber={'7'} cardSymbol={'♥'} cardIndex={3} />*/}
-      {/*<Card cardNumber={'7'} cardSymbol={'♠'} cardIndex={4} />*/}
-    </div>
-  );
+  return <div className="flex justify-center">{cards}</div>;
 };
 
 export default DrawnCards;

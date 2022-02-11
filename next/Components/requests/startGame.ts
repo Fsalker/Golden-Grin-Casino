@@ -1,5 +1,6 @@
 import { SetterOrUpdater } from 'recoil';
 import { generateDeck } from '../../utils/generateDeck';
+import { GameStateType } from '../types';
 
 export type StartGameParams = {
   setGameInProgress: SetterOrUpdater<boolean>;
@@ -9,6 +10,7 @@ export type StartGameParams = {
   setDeckValues: SetterOrUpdater<Array<number>>;
   numCardsInDeck: number;
   setAcesLeft: SetterOrUpdater<number>;
+  setGameState: SetterOrUpdater<GameStateType>;
 };
 
 export const startGame = ({
@@ -19,6 +21,7 @@ export const startGame = ({
   setDeckValues,
   numCardsInDeck,
   setAcesLeft,
+  setGameState,
 }: StartGameParams) => {
   setGameInProgress(true);
   setDrawnCards([]);
@@ -27,6 +30,7 @@ export const startGame = ({
     setDeckValues(deck);
     setCardsLeft(numCardsInDeck);
     setAcesLeft(4);
+    setGameState('in progress');
   }
   // localStorage.setItem('gameInProgress', 'true');
 };

@@ -1,4 +1,3 @@
-import { ButtonComponent } from '../types';
 import SmallButton from './Wrappers/SmallButton';
 import { useRecoilState } from 'recoil';
 import {
@@ -7,12 +6,17 @@ import {
   cardsLeftState,
   deckValuesState,
   gameInProgressState,
+  gameState,
   numCardsInDeckState,
   offlineGameState,
 } from '../../recoil/atoms';
 import { startGame } from '../requests/startGame';
 
-const Reset: ButtonComponent = () => {
+type ResetProps = {
+  text?: string;
+};
+
+const Reset = ({ text = 'Reset' }: ResetProps) => {
   const [numCardsInDeck] = useRecoilState(numCardsInDeckState);
   const [offlineGame] = useRecoilState(offlineGameState);
   const [, setGameInProgress] = useRecoilState(gameInProgressState);
@@ -20,6 +24,7 @@ const Reset: ButtonComponent = () => {
   const [, setDeckValues] = useRecoilState(deckValuesState);
   const [, setDrawnCards] = useRecoilState(cardsDrawnState);
   const [, setAcesLeft] = useRecoilState(acesLeftState);
+  const [, setGameState] = useRecoilState(gameState);
 
   const handleReset = () => {
     startGame({
@@ -30,12 +35,13 @@ const Reset: ButtonComponent = () => {
       setDeckValues,
       numCardsInDeck,
       setAcesLeft,
+      setGameState,
     });
   };
 
   return (
     <div onClick={handleReset}>
-      <SmallButton>Reset</SmallButton>
+      <SmallButton>{text}</SmallButton>
     </div>
   );
 };

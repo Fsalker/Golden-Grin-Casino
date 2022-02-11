@@ -5,3 +5,4 @@ export type LargeButtonType = FunctionComponent;
 export type ButtonComponent = SmallButtonType | LargeButtonType;
 
 export type CardSymbols = '♣' | '♦' | '♥' | '♠';
+export type GameStateType = null | 'in progress' | 'won' | 'lost';

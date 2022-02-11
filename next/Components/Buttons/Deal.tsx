@@ -6,6 +6,7 @@ import {
   cardsDrawnState,
   cardsLeftState,
   deckValuesState,
+  gameState,
   numCardsInDeckState,
   offlineGameState,
 } from '../../recoil/atoms';
@@ -17,6 +18,8 @@ const Deal: ButtonComponent = () => {
   const [, setCardsDrawn] = useRecoilState(cardsDrawnState);
   const [deckValues, setDeckValues] = useRecoilState(deckValuesState);
   const [acesLeft, setAcesLeft] = useRecoilState(acesLeftState);
+  const [, setGameState] = useRecoilState(gameState);
+
   const handleDeal = () => {
     if (cardsLeft) {
       // deckValues.length is, in theory, completely optional. BUT it might save our lives someday... 🎵
@@ -28,13 +31,22 @@ const Deal: ButtonComponent = () => {
         const numDrawnAces = drawnCards.filter(
           (cardValue) => cardValue % (numCardsInDeck / 4) === 0
         ).length;
+        const newNumCardsLeft = cardsLeft - numCardsDealt;
+        const newNumAcesLeft = acesLeft - numDrawnAces;
         console.log(drawnCards, numCardsInDeck);
         console.log('Drawn aces = ', numDrawnAces);
 
+        if (newNumCardsLeft === 0) {
+          // The game has ended
+          const gameWon = numDrawnAces > 0;
+
+          setGameState(gameWon ? 'won' : 'lost');
+        }
+
         setCardsDrawn(drawnCards);
         setDeckValues(newDeck);
-        setCardsLeft(cardsLeft - numCardsDealt);
-        setAcesLeft(acesLeft - numDrawnAces);
+        setCardsLeft(newNumCardsLeft);
+        setAcesLeft(newNumAcesLeft);
       }
     }
   };

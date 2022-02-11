@@ -7,6 +7,7 @@ import {
   cardsLeftState,
   deckValuesState,
   gameInProgressState,
+  gameState,
   numCardsInDeckState,
   offlineGameState,
 } from '../../recoil/atoms';
@@ -20,6 +21,7 @@ const StartGameBtn: ButtonComponent = () => {
   const [, setDeckValues] = useRecoilState(deckValuesState);
   const [, setDrawnCards] = useRecoilState(cardsDrawnState);
   const [, setAcesLeft] = useRecoilState(acesLeftState);
+  const [, setGameState] = useRecoilState(gameState);
 
   const handleStartGame = () => {
     startGame({
@@ -30,6 +32,7 @@ const StartGameBtn: ButtonComponent = () => {
       setDeckValues,
       numCardsInDeck,
       setAcesLeft,
+      setGameState,
     });
   };
 

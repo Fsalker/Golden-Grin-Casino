@@ -1,4 +1,5 @@
 import { atom } from 'recoil';
+import { GameStateType } from '../../Components/types';
 
 export const offlineGameState = atom({
   key: 'offlineGameState',
@@ -39,4 +40,9 @@ export const cardsDrawnState = atom({
 export const deckValuesState = atom({
   key: 'deckValues',
   default: [] as Array<number>,
+});
+
+export const gameState = atom({
+  key: 'gameState',
+  default: null as GameStateType,
 });

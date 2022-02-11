@@ -4,12 +4,7 @@ export type SmallButtonType = FunctionComponent;
 export type LargeButtonType = FunctionComponent;
 export type ButtonComponent = SmallButtonType | LargeButtonType;
 
-export enum CardSymbols {
-  '♣' = '♣',
-  '♦' = '♦',
-  '♥' = '♥',
-  '♠' = '♠',
-}
+export type CardSymbols = '♣' | '♦' | '♥' | '♠';
 
 export type CardParams = {
   cardNumber: string;

@@ -2,7 +2,7 @@ import { CardSymbols } from '../types';
 import Card from './Card';
 import { FunctionComponent } from 'react';
 import { useRecoilState } from 'recoil';
-import { cardsDrawnState, numCardsInDeckState } from '../../recoil/atoms';
+import { cardsDrawnState, gameState, numCardsInDeckState } from '../../recoil/atoms';
 import { cardValuePool } from '../constants';
 
 const mapIndexToCardSymbol = ['♣', '♦', '♥', '♠'];
@@ -10,8 +10,9 @@ const mapIndexToCardSymbol = ['♣', '♦', '♥', '♠'];
 const DrawnCards: FunctionComponent = () => {
   const [numCardsInDeck] = useRecoilState(numCardsInDeckState);
   const [cardsDrawn] = useRecoilState(cardsDrawnState);
+  const [gameStatus] = useRecoilState(gameState);
 
-  const canRotateCards = cardsDrawn.length === 5; // TODO: Also, don't rotate them when we're on a small display
+  const canRotateCards = gameStatus === 'in progress'; // TODO: Also, don't rotate them when we're on a small display
 
   const cards = cardsDrawn.map((cardValue, index) => {
     if (cardValue < 0 || cardValue >= numCardsInDeck) {

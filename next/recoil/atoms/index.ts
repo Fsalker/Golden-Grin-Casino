@@ -17,7 +17,6 @@ export const gameInProgressState = atom({
 });
 
 export const numCardsInDeckState = atom({
-  // TODO: Allow setting a different number of cards per suit (ie: 13, 14, 15 or 12, 11, 10 etc)
   key: 'numCardsInDeckState',
   default: 52,
 });

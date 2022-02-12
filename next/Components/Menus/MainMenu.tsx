@@ -35,22 +35,27 @@ const MainMenu: FunctionComponent = () => {
   const authButtons = loggedIn ? loggedInButtons : loggedOutButtons;
 
   return (
-    <div className="flex flex-col justify-center items-center h-screen">
-      <StartGameBtn />
-      <div className="flex">
-        <span className="font-courierPrimeBold">
-          Cards per suit {numCardsInDeck / 4 < 10 && '\u00A0'}({numCardsInDeck / 4}):
-        </span>
-        <input
-          type="range"
-          min="2"
-          max="20"
-          value={numCardsInDeck / 4}
-          onChange={(e) => setNumCardsInDeck(parseInt(e.target.value) * 4)}
-        />
+    <div className="h-screen">
+      <div className="flex flex-col justify-end items-center h-[45%]">
+        <StartGameBtn />
+        <div className="flex">
+          <span className="font-courierPrimeBold">
+            Cards per suit {numCardsInDeck / 4 < 10 && '\u00A0'}({numCardsInDeck / 4}):
+          </span>
+          <input
+            type="range"
+            min="2"
+            max="20"
+            value={numCardsInDeck / 4}
+            onChange={(e) => setNumCardsInDeck(parseInt(e.target.value) * 4)}
+          />
+        </div>
       </div>
-      <div className="mt-0" />
-      {authButtons}
+
+      <div className="flex flex-col justify-center items-center">
+        <div className="mt-0" />
+        {authButtons}
+      </div>
     </div>
   );
 };

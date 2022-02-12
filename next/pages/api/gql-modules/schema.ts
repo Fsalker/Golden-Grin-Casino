@@ -16,7 +16,7 @@ export const typeDefs = gql`
 
   type Game {
     id: ID!
-    userId: ID!
+    user: User!
 
     deck: [Int]!
     currentCardIndex: Int!

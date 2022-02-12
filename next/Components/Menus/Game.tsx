@@ -7,7 +7,7 @@ import AcesLeftCounter from '../Counters/AcesLeftCounter';
 import CardsLeftCounter from '../Counters/CardsLeftCounter';
 import { useRecoilState } from 'recoil';
 import { gameState } from '../../recoil/atoms';
-import asd from '../../public/gameWonBannerDesktop.svg';
+import GameWonBanner from '../../public/gameWonBannerDesktop.svg';
 
 const Game: FunctionComponent = () => {
   const [gameStatus] = useRecoilState(gameState);
@@ -15,7 +15,7 @@ const Game: FunctionComponent = () => {
   const winBanner =
     gameStatus === 'won' ? (
       <div className="flex justify-center mt-[-46px] mb-[-24px]">
-        <img src={asd.src} />
+        <img src={GameWonBanner.src} />
       </div>
     ) : (
       ''

@@ -1,4 +1,4 @@
-export const generateDeck = (deckLength: number) => {
+export const generateDeck = (deckLength: number): number[] => {
   const deck = Array(deckLength)
     .fill(null)
     .map((_, index) => index);

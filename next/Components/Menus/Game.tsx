@@ -8,9 +8,21 @@ import CardsLeftCounter from '../Counters/CardsLeftCounter';
 import { useRecoilState } from 'recoil';
 import { gameState } from '../../recoil/atoms';
 import GameWonBanner from '../../public/gameWonBannerDesktop.svg';
+import ConfettiLeft from '../../public/confettiLeft.svg';
+import ConfettiRight from '../../public/confettiRight.svg';
 
 const Game: FunctionComponent = () => {
   const [gameStatus] = useRecoilState(gameState);
+
+  const confetti =
+    gameStatus === 'won' ? (
+      <div className="fixed top-[40%]">
+        <img src={ConfettiLeft.src} className="fixed left-[5%]" />
+        <img src={ConfettiRight.src} className="fixed right-[5%]" />
+      </div>
+    ) : (
+      ''
+    );
 
   const winBanner =
     gameStatus === 'won' ? (
@@ -63,6 +75,7 @@ const Game: FunctionComponent = () => {
           <div className="mx-4" />
           <AcesLeftCounter />
         </div>
+        {confetti}
         {winBanner}
         <div className="mt-24">
           <DrawnCards />

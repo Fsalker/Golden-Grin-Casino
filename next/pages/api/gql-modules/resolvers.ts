@@ -9,6 +9,18 @@ import { GameStateType } from '../../../Components/types';
 
 const bcryptSaltRounds = 12;
 
+const getUserLatestGame = async (userId: number) => {
+  const game = (
+    await prisma.game.findMany({
+      where: { userId },
+      orderBy: { createdAt: 'desc' },
+      take: 1,
+    })
+  )?.[0];
+
+  return game;
+};
+
 const currentGame = async (_: any, __: any, { userId }: JwtPayload) => {
   if (!userId) {
     throw new AuthenticationError(
@@ -16,20 +28,21 @@ const currentGame = async (_: any, __: any, { userId }: JwtPayload) => {
     );
   }
 
-  const game = await prisma.game.findFirst({ where: { userId } });
+  const game = await getUserLatestGame(userId);
   if (!game) {
     return null;
   }
 
   const numCardsInDeck = game.deck.length;
   const lastDrawnCards = game.deck.slice(-(game.deck.length % 5));
-  const gameWon = !!lastDrawnCards.find((cardValue) =>
+  const gameWon = !!lastDrawnCards.filter((cardValue) =>
     isCardValueAce({ cardValue, numCardsInDeck })
-  );
+  ).length;
 
   const cardsLeft = game.deck.length - game.currentCardIndex;
-  const acesLeft = game.deck.filter((cardValue) => isCardValueAce({ cardValue, numCardsInDeck }))
-    .length;
+  const acesLeft = game.deck
+    .slice(game.currentCardIndex)
+    .filter((cardValue) => isCardValueAce({ cardValue, numCardsInDeck })).length;
   const gameState: GameStateType = cardsLeft > 0 ? 'in progress' : gameWon ? 'won' : 'lost';
 
   return {
@@ -87,8 +100,6 @@ const startGame = async (_: any, { numCardsInDeck }: CurrentGameParams, { userId
     },
   });
 
-  console.log(deck);
-
   return true;
 };
 
@@ -99,7 +110,25 @@ const dealCards = async (_: any, __: any, { userId }: JwtPayload) => {
     );
   }
 
-  return [600, 601, 602, 603, 604];
+  const game = await getUserLatestGame(userId);
+  if (!game || game.currentCardIndex >= game.deck.length) {
+    return null;
+  }
+
+  const numDrawnCards = Math.min(5, game.deck.length - game.currentCardIndex);
+  const newCurrentCardIndex = game.currentCardIndex + numDrawnCards;
+  const drawnCards = game.deck.slice(game.currentCardIndex, game.currentCardIndex + numDrawnCards);
+
+  await prisma.game.update({
+    where: {
+      id: game.id,
+    },
+    data: {
+      currentCardIndex: newCurrentCardIndex,
+    },
+  });
+
+  return drawnCards;
 };
 
 export const resolvers = {

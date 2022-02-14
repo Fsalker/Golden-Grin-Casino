@@ -19,6 +19,7 @@ const startServer = apolloServer.start();
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   await startServer;
   await apolloServer.createHandler({
+    // Refactor
     path: '/api/graphql',
   })(req, res);
 }

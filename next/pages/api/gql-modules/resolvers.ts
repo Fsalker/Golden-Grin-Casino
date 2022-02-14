@@ -1,5 +1,8 @@
 import prisma from '../../../prisma/prismaClient';
 import { generateJwt } from './auth';
+import bcrypt from 'bcrypt';
+
+const bcryptSaltRounds = 12;
 
 type LoginParams = {
   accountInput: {
@@ -19,10 +22,16 @@ const currentGame = () => {
 };
 
 const login = async (_: any, { accountInput: { username, password } }: RegisterParams) => {
-  const storedPassword = password; // TODO: hash using bcrypt
-  const user = await prisma.user.findFirst({ where: { username, password: storedPassword } });
+  const user = await prisma.user.findUnique({ where: { username } });
 
-  if (user) {
+  if (!user) {
+    throw Error('Authentication failed');
+  }
+
+  const storedPassword = user.password;
+  const passwordIsCorrect = await bcrypt.compare(password, storedPassword);
+
+  if (passwordIsCorrect) {
     const jwt = generateJwt({ userId: user.id });
     return jwt;
   } else {
@@ -36,7 +45,7 @@ const register = async (_: any, { accountInput: { username, password } }: Regist
     throw Error('Username is already taken.');
   }
 
-  const storedPassword = password; // TODO: hash using bcrypt
+  const storedPassword = await bcrypt.hash(password, bcryptSaltRounds);
   const user = await prisma.user.create({ data: { username, password: storedPassword } });
   const jwt = generateJwt({ userId: user.id });
 

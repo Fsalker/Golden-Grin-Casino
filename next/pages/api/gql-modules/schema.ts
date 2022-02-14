@@ -41,6 +41,6 @@ export const typeDefs = gql`
     login(accountInput: AccountInput!): String
     register(accountInput: AccountInput!): String
     startGame(numCardsInDeck: Int!): Boolean
-    drawCards: [Int]
+    dealCards: [Int]
   }
 `;

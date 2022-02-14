@@ -4,20 +4,38 @@ import bcrypt from 'bcrypt';
 import { CurrentGameParams, JwtPayload, LoginParams, RegisterParams } from './types';
 import { AuthenticationError } from 'apollo-server-micro';
 import { generateDeck } from '../../../utils/generateDeck';
+import { isCardValueAce } from '../../../utils/isCardValueAce';
+import { GameStateType } from '../../../Components/types';
 
 const bcryptSaltRounds = 12;
 
-const currentGame = (_: any, __: any, { userId }: JwtPayload) => {
+const currentGame = async (_: any, __: any, { userId }: JwtPayload) => {
   if (!userId) {
     throw new AuthenticationError(
       "You must authenticate using a *valid* JWT in the 'authorization' request header, after logging in."
     );
   }
 
+  const game = await prisma.game.findFirst({ where: { userId } });
+  if (!game) {
+    return null;
+  }
+
+  const numCardsInDeck = game.deck.length;
+  const lastDrawnCards = game.deck.slice(-(game.deck.length % 5));
+  const gameWon = !!lastDrawnCards.find((cardValue) =>
+    isCardValueAce({ cardValue, numCardsInDeck })
+  );
+
+  const cardsLeft = game.deck.length - game.currentCardIndex;
+  const acesLeft = game.deck.filter((cardValue) => isCardValueAce({ cardValue, numCardsInDeck }))
+    .length;
+  const gameState: GameStateType = cardsLeft > 0 ? 'in progress' : gameWon ? 'won' : 'lost';
+
   return {
-    gameState: 'in progress',
-    cardsLeft: 30,
-    acesLeft: 3,
+    gameState,
+    cardsLeft,
+    acesLeft,
   };
 };
 
@@ -52,7 +70,7 @@ const register = async (_: any, { accountInput: { username, password } }: Regist
   return jwt;
 };
 
-const startGame = (_: any, { numCardsInDeck }: CurrentGameParams, { userId }: JwtPayload) => {
+const startGame = async (_: any, { numCardsInDeck }: CurrentGameParams, { userId }: JwtPayload) => {
   if (!userId) {
     throw new AuthenticationError(
       "You must authenticate using a *valid* JWT in the 'authorization' request header, after logging in."
@@ -60,11 +78,21 @@ const startGame = (_: any, { numCardsInDeck }: CurrentGameParams, { userId }: Jw
   }
 
   const deck = generateDeck(numCardsInDeck);
+  await prisma.game.create({
+    data: {
+      deck,
+      user: {
+        connect: { id: userId },
+      },
+    },
+  });
+
+  console.log(deck);
 
   return true;
 };
 
-const drawCards = (_: any, __: any, { userId }: JwtPayload) => {
+const dealCards = async (_: any, __: any, { userId }: JwtPayload) => {
   if (!userId) {
     throw new AuthenticationError(
       "You must authenticate using a *valid* JWT in the 'authorization' request header, after logging in."
@@ -82,6 +110,6 @@ export const resolvers = {
     login,
     register,
     startGame,
-    drawCards,
+    dealCards,
   },
 };

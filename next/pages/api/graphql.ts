@@ -2,15 +2,20 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 import { ApolloServer } from 'apollo-server-micro';
 import { typeDefs } from './gql-modules/schema';
 import { resolvers } from './gql-modules/resolvers';
+import { getJwtPayload, validateJwt } from './gql-modules/auth';
+import { JwtPayload } from './gql-modules/types';
 
 const apolloServer = new ApolloServer({
   typeDefs,
   resolvers,
   context: ({ req }) => {
-    const jwt = req.headers.authorization || '';
-    const user = null; // TODO: Get user from jwt
-
-    return { user };
+    const jwt: string = req.headers.authorization || '';
+    console.log('jwt = ', jwt);
+    if (validateJwt(jwt)) {
+      const jwtPayload: JwtPayload = getJwtPayload(jwt);
+      console.log('payload = ', jwtPayload);
+      return { userId: jwtPayload.userId };
+    }
   },
 });
 

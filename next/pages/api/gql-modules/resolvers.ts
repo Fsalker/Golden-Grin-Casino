@@ -1,19 +1,18 @@
 import prisma from '../../../prisma/prismaClient';
 import { generateJwt } from './auth';
 import bcrypt from 'bcrypt';
+import { CurrentGameParams, JwtPayload, LoginParams, RegisterParams } from './types';
+import { AuthenticationError } from 'apollo-server-micro';
 
 const bcryptSaltRounds = 12;
 
-type LoginParams = {
-  accountInput: {
-    username: string;
-    password: string;
-  };
-};
+const currentGame = (_: any, __: any, { userId }: JwtPayload) => {
+  if (!userId) {
+    throw new AuthenticationError(
+      "You must authenticate using a *valid* JWT in the 'authorization' request header, after logging in."
+    );
+  }
 
-type RegisterParams = LoginParams;
-
-const currentGame = () => {
   return {
     gameState: 'in progress',
     cardsLeft: 30,
@@ -21,7 +20,7 @@ const currentGame = () => {
   };
 };
 
-const login = async (_: any, { accountInput: { username, password } }: RegisterParams) => {
+const login = async (_: any, { accountInput: { username, password } }: LoginParams) => {
   const user = await prisma.user.findUnique({ where: { username } });
 
   if (!user) {
@@ -52,11 +51,22 @@ const register = async (_: any, { accountInput: { username, password } }: Regist
   return jwt;
 };
 
-const startGame = () => {
+const startGame = (_: any, { numCardsInDeck }: CurrentGameParams, { userId }: JwtPayload) => {
+  if (!userId) {
+    throw new AuthenticationError(
+      "You must authenticate using a *valid* JWT in the 'authorization' request header, after logging in."
+    );
+  }
   return true;
 };
 
-const drawCards = () => {
+const drawCards = (_: any, __: any, { userId }: JwtPayload) => {
+  if (!userId) {
+    throw new AuthenticationError(
+      "You must authenticate using a *valid* JWT in the 'authorization' request header, after logging in."
+    );
+  }
+
   return [600, 601, 602, 603, 604];
 };
 

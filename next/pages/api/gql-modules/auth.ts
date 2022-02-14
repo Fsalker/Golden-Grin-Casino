@@ -1,14 +1,13 @@
 import 'dotenv/config';
 import jwt from 'jsonwebtoken';
+import { JwtPayload } from './types';
 
 type GenerateJwtParams = {
   userId: number;
 };
 
-export const generateJwt = ({ userId }: GenerateJwtParams): string => {
-  console.log('secret = ', process.env.JWT_SECRET);
-  return jwt.sign({ userId }, process.env.JWT_SECRET as string);
-};
+export const generateJwt = ({ userId }: GenerateJwtParams): string =>
+  jwt.sign({ userId } as JwtPayload, process.env.JWT_SECRET as string);
 
 export const validateJwt = (token: string): boolean => {
   try {
@@ -18,3 +17,5 @@ export const validateJwt = (token: string): boolean => {
     return false;
   }
 };
+
+export const getJwtPayload = (token: string): JwtPayload => jwt.decode(token) as JwtPayload;

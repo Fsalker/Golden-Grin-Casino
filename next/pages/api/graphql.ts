@@ -10,10 +10,8 @@ const apolloServer = new ApolloServer({
   resolvers,
   context: ({ req }) => {
     const jwt: string = req.headers.authorization || '';
-    console.log('jwt = ', jwt);
     if (validateJwt(jwt)) {
       const jwtPayload: JwtPayload = getJwtPayload(jwt);
-      console.log('payload = ', jwtPayload);
       return { userId: jwtPayload.userId };
     }
   },
@@ -24,7 +22,6 @@ const startServer = apolloServer.start();
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   await startServer;
   await apolloServer.createHandler({
-    // Refactor
     path: '/api/graphql',
   })(req, res);
 }

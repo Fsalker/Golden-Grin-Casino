@@ -3,6 +3,7 @@ import { generateJwt } from './auth';
 import bcrypt from 'bcrypt';
 import { CurrentGameParams, JwtPayload, LoginParams, RegisterParams } from './types';
 import { AuthenticationError } from 'apollo-server-micro';
+import { generateDeck } from '../../../utils/generateDeck';
 
 const bcryptSaltRounds = 12;
 
@@ -57,6 +58,9 @@ const startGame = (_: any, { numCardsInDeck }: CurrentGameParams, { userId }: Jw
       "You must authenticate using a *valid* JWT in the 'authorization' request header, after logging in."
     );
   }
+
+  const deck = generateDeck(numCardsInDeck);
+
   return true;
 };
 

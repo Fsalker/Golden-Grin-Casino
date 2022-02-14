@@ -15,14 +15,14 @@ model User {
   createdAt DateTime @default(now())
   username  String   @unique
   password  String
-  Game      Game[]
+  games     Game[]
 }
 
 model Game {
   id               Int      @id @default(autoincrement())
   createdAt        DateTime @default(now())
-  userId           Int      @unique
+  userId           Int
   user             User     @relation(fields: [userId], references: [id])
   deck             Int[]
-  currentCardIndex Int
+  currentCardIndex Int      @default(0) // The top (undrawn) card's index
 }

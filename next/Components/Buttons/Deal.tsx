@@ -10,6 +10,7 @@ import {
   numCardsInDeckState,
   offlineGameState,
 } from '../../recoil/atoms';
+import { isCardValueAce } from '../../utils/isCardValueAce';
 
 const Deal: ButtonComponent = () => {
   const [numCardsInDeck] = useRecoilState(numCardsInDeckState);
@@ -28,8 +29,8 @@ const Deal: ButtonComponent = () => {
       if (offlineGame) {
         const newDeck = [...deckValues];
         const drawnCards = newDeck.splice(0, numCardsDealt);
-        const numDrawnAces = drawnCards.filter(
-          (cardValue) => cardValue % (numCardsInDeck / 4) === 0
+        const numDrawnAces = drawnCards.filter((cardValue) =>
+          isCardValueAce({ cardValue, numCardsInDeck })
         ).length;
         const newNumCardsLeft = cardsLeft - numCardsDealt;
         const newNumAcesLeft = acesLeft - numDrawnAces;

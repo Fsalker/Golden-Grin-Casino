@@ -3,7 +3,6 @@ import { generateDeck } from '../../utils/generateDeck';
 import { GameStateType } from '../types';
 
 export type StartGameParams = {
-  setGameInProgress: SetterOrUpdater<boolean>;
   setCardsLeft: SetterOrUpdater<number>;
   setDrawnCards: SetterOrUpdater<Array<number>>;
   offlineGame: boolean;
@@ -14,7 +13,6 @@ export type StartGameParams = {
 };
 
 export const startGame = ({
-  setGameInProgress,
   setDrawnCards,
   setCardsLeft,
   offlineGame,
@@ -23,7 +21,6 @@ export const startGame = ({
   setAcesLeft,
   setGameState,
 }: StartGameParams) => {
-  setGameInProgress(true);
   setDrawnCards([]);
   if (offlineGame) {
     const deck = generateDeck(numCardsInDeck);

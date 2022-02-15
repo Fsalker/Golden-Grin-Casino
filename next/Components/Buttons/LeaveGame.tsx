@@ -1,13 +1,13 @@
 import { ButtonComponent } from '../types';
 import SmallButton from './Wrappers/SmallButton';
 import { useRecoilState } from 'recoil';
-import { gameInProgressState } from '../../recoil/atoms';
+import { gameState } from '../../recoil/atoms';
 
 const LeaveGame: ButtonComponent = () => {
-  const [, setGameInProgress] = useRecoilState(gameInProgressState);
+  const [, setGameState] = useRecoilState(gameState);
 
   const handleLeaveGame = () => {
-    setGameInProgress(false);
+    setGameState(null);
   };
 
   return (

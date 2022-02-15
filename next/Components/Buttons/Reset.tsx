@@ -5,7 +5,6 @@ import {
   cardsDrawnState,
   cardsLeftState,
   deckValuesState,
-  gameInProgressState,
   gameState,
   numCardsInDeckState,
   offlineGameState,
@@ -20,7 +19,6 @@ interface ResetProps {
 const Reset: FunctionComponent<ResetProps> = ({ text = 'Reset' }) => {
   const [numCardsInDeck] = useRecoilState(numCardsInDeckState);
   const [offlineGame] = useRecoilState(offlineGameState);
-  const [, setGameInProgress] = useRecoilState(gameInProgressState);
   const [, setCardsLeft] = useRecoilState(cardsLeftState);
   const [, setDeckValues] = useRecoilState(deckValuesState);
   const [, setDrawnCards] = useRecoilState(cardsDrawnState);
@@ -29,7 +27,6 @@ const Reset: FunctionComponent<ResetProps> = ({ text = 'Reset' }) => {
 
   const handleReset = () => {
     startGame({
-      setGameInProgress,
       setCardsLeft,
       setDrawnCards,
       offlineGame,

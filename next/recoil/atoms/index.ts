@@ -11,11 +11,6 @@ export const loggedInState = atom({
   default: null as null | boolean,
 });
 
-export const gameInProgressState = atom({
-  key: 'gameInProgressState',
-  default: false,
-});
-
 export const numCardsInDeckState = atom({
   key: 'numCardsInDeckState',
   default: 52,

@@ -6,7 +6,6 @@ import {
   cardsDrawnState,
   cardsLeftState,
   deckValuesState,
-  gameInProgressState,
   gameState,
   numCardsInDeckState,
   offlineGameState,
@@ -16,7 +15,6 @@ import { startGame } from '../requests/startGame';
 const StartGameBtn: ButtonComponent = () => {
   const [numCardsInDeck] = useRecoilState(numCardsInDeckState);
   const [offlineGame] = useRecoilState(offlineGameState);
-  const [, setGameInProgress] = useRecoilState(gameInProgressState);
   const [, setCardsLeft] = useRecoilState(cardsLeftState);
   const [, setDeckValues] = useRecoilState(deckValuesState);
   const [, setDrawnCards] = useRecoilState(cardsDrawnState);
@@ -25,7 +23,6 @@ const StartGameBtn: ButtonComponent = () => {
 
   const handleStartGame = () => {
     startGame({
-      setGameInProgress,
       setCardsLeft,
       setDrawnCards,
       offlineGame,

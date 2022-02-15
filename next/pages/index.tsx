@@ -2,11 +2,13 @@ import type { NextPage } from 'next';
 import Head from 'next/head';
 import MainMenu from '../Components/Menus/MainMenu';
 import Game from '../Components/Menus/Game';
-import { gameInProgressState } from '../recoil/atoms';
 import { useRecoilState } from 'recoil';
+import { gameState } from '../recoil/atoms';
 
 const Home: NextPage = () => {
-  const [gameInProgress] = useRecoilState(gameInProgressState);
+  const [gameStatus] = useRecoilState(gameState);
+
+  const gameInProgress = gameStatus !== null;
 
   return (
     <div className="bg-gradient-to-b h-screen">

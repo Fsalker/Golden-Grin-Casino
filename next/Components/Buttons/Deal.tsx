@@ -34,8 +34,6 @@ const Deal: ButtonComponent = () => {
         ).length;
         const newNumCardsLeft = cardsLeft - numCardsDealt;
         const newNumAcesLeft = acesLeft - numDrawnAces;
-        console.log(drawnCards, numCardsInDeck);
-        console.log('Drawn aces = ', numDrawnAces);
 
         if (newNumCardsLeft === 0) {
           // The game has ended

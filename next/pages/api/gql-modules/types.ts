@@ -12,3 +12,6 @@ export type RegisterParams = LoginParams;
 export type CurrentGameParams = {
   numCardsInDeck: number;
 };
+
+export const usernameTakenErrorMessage = 'Your username is already taken.';
+export const authenticationFailedErrorMessage = 'Authentication failed.';

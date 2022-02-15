@@ -4,20 +4,24 @@ import Logout from '../Buttons/Authentication/Logout';
 import Login from '../Buttons/Authentication/Login';
 import Register from '../Buttons/Authentication/Register';
 import { useRecoilState } from 'recoil';
-import { loggedInState, numCardsInDeckState } from '../../recoil/atoms';
+import { accountFormState, loggedInState, numCardsInDeckState } from '../../recoil/atoms';
 import { checkIfUserIsLoggedIn } from '../../utils/auth';
+import AccountForm from '../Buttons/Authentication/AccountForm';
 
 const MainMenu: FunctionComponent = () => {
   const [loggedIn, setLoggedIn] = useRecoilState(loggedInState);
-  // const [, setGameInProgress] = useRecoilState(gameInProgressState);
   const [numCardsInDeck, setNumCardsInDeck] = useRecoilState(numCardsInDeckState);
+  const [accountFormStatus] = useRecoilState(accountFormState);
 
-  const loggedOutButtons = (
-    <>
-      <Register />
-      <Login />
-    </>
-  );
+  const loggedOutButtons =
+    accountFormStatus === 'invisible' ? (
+      <>
+        <Register />
+        <Login />
+      </>
+    ) : (
+      <AccountForm />
+    );
 
   const loggedInButtons = (
     <>
@@ -28,7 +32,6 @@ const MainMenu: FunctionComponent = () => {
   useEffect(() => {
     if (loggedIn === null) {
       setLoggedIn(checkIfUserIsLoggedIn());
-      // setGameInProgress(localStorage.getItem('gameInProgress') === 'true' ? true : false);
     }
   }, []);
 

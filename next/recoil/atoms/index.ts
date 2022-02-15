@@ -1,5 +1,5 @@
 import { atom } from 'recoil';
-import { GameStateType } from '../../Components/types';
+import { AccountFormStateType, GameStateType } from '../../Components/types';
 
 export const offlineGameState = atom({
   key: 'offlineGameState',
@@ -44,4 +44,9 @@ export const deckValuesState = atom({
 export const gameState = atom({
   key: 'gameState',
   default: null as GameStateType,
+});
+
+export const accountFormState = atom({
+  key: 'showAccountFormState',
+  default: 'invisible' as AccountFormStateType,
 });

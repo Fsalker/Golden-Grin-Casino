@@ -12,7 +12,6 @@
     "@prisma/client": "^3.9.2",
     "apollo-server-micro": "^3.6.3",
     "bcrypt": "^5.0.1",
-    "dotenv": "^16.0.0",
     "graphql": "^16.3.0",
     "jsonwebtoken": "^8.5.1",
     "micro": "^9.3.4",

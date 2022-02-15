@@ -8,7 +8,6 @@ const LeaveGame: ButtonComponent = () => {
 
   const handleLeaveGame = () => {
     setGameInProgress(false);
-    // localStorage.setItem('gameInProgress', 'false');
   };
 
   return (

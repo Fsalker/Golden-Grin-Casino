@@ -32,5 +32,4 @@ export const startGame = ({
     setAcesLeft(4);
     setGameState('in progress');
   }
-  // localStorage.setItem('gameInProgress', 'true');
 };

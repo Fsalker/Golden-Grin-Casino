@@ -10,7 +10,7 @@ import {
   loggedInState,
   numCardsInDeckState,
 } from '../../recoil/atoms';
-import { startGame } from '../requests/startGame';
+import { startGame } from './common';
 
 const StartGameBtn: ButtonComponent = () => {
   const [numCardsInDeck] = useRecoilState(numCardsInDeckState);

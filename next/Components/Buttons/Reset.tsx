@@ -9,7 +9,7 @@ import {
   loggedInState,
   numCardsInDeckState,
 } from '../../recoil/atoms';
-import { startGame } from '../requests/startGame';
+import { startGame } from './common';
 import { FunctionComponent } from 'react';
 
 interface ResetProps {

@@ -6,8 +6,8 @@ import {
   cardsLeftState,
   deckValuesState,
   gameState,
+  loggedInState,
   numCardsInDeckState,
-  offlineGameState,
 } from '../../recoil/atoms';
 import { startGame } from '../requests/startGame';
 import { FunctionComponent } from 'react';
@@ -18,18 +18,18 @@ interface ResetProps {
 
 const Reset: FunctionComponent<ResetProps> = ({ text = 'Reset' }) => {
   const [numCardsInDeck] = useRecoilState(numCardsInDeckState);
-  const [offlineGame] = useRecoilState(offlineGameState);
+  const [loggedIn] = useRecoilState(loggedInState);
   const [, setCardsLeft] = useRecoilState(cardsLeftState);
   const [, setDeckValues] = useRecoilState(deckValuesState);
   const [, setDrawnCards] = useRecoilState(cardsDrawnState);
   const [, setAcesLeft] = useRecoilState(acesLeftState);
   const [, setGameState] = useRecoilState(gameState);
 
-  const handleReset = () => {
-    startGame({
+  const handleReset = async () => {
+    await startGame({
       setCardsLeft,
       setDrawnCards,
-      offlineGame,
+      loggedIn,
       setDeckValues,
       numCardsInDeck,
       setAcesLeft,

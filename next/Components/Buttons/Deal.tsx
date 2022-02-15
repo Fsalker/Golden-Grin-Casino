@@ -8,45 +8,52 @@ import {
   deckValuesState,
   gameState,
   numCardsInDeckState,
-  offlineGameState,
+  loggedInState,
 } from '../../recoil/atoms';
 import { isCardValueAce } from '../../utils/isCardValueAce';
+import dealCardsRequest from '../gql-requests/dealCards';
 
 const Deal: ButtonComponent = () => {
   const [numCardsInDeck] = useRecoilState(numCardsInDeckState);
-  const [offlineGame] = useRecoilState(offlineGameState);
+  const [loggedIn] = useRecoilState(loggedInState);
   const [cardsLeft, setCardsLeft] = useRecoilState(cardsLeftState);
   const [, setCardsDrawn] = useRecoilState(cardsDrawnState);
   const [deckValues, setDeckValues] = useRecoilState(deckValuesState);
   const [acesLeft, setAcesLeft] = useRecoilState(acesLeftState);
   const [, setGameState] = useRecoilState(gameState);
 
-  const handleDeal = () => {
+  const handleDeal = async () => {
     if (cardsLeft) {
       // deckValues.length is, in theory, completely optional. BUT it might save our lives someday... 🎵
-      const numCardsDealt = Math.min(cardsLeft, 5, deckValues.length);
 
-      if (offlineGame) {
+      let drawnCards: number[];
+      let numCardsDealt: number;
+      if (!loggedIn) {
+        numCardsDealt = Math.min(cardsLeft, 5, deckValues.length);
         const newDeck = [...deckValues];
-        const drawnCards = newDeck.splice(0, numCardsDealt);
-        const numDrawnAces = drawnCards.filter((cardValue) =>
-          isCardValueAce({ cardValue, numCardsInDeck })
-        ).length;
-        const newNumCardsLeft = cardsLeft - numCardsDealt;
-        const newNumAcesLeft = acesLeft - numDrawnAces;
-
-        if (newNumCardsLeft === 0) {
-          // The game has ended
-          const gameWon = numDrawnAces > 0;
-
-          setGameState(gameWon ? 'won' : 'lost');
-        }
-
-        setCardsDrawn(drawnCards);
+        drawnCards = newDeck.splice(0, numCardsDealt);
         setDeckValues(newDeck);
-        setCardsLeft(newNumCardsLeft);
-        setAcesLeft(newNumAcesLeft);
+      } else {
+        drawnCards = (await dealCardsRequest()).data.dealCards;
+        numCardsDealt = drawnCards.length;
+        setCardsDrawn(drawnCards);
       }
+
+      const numDrawnAces = drawnCards.filter((cardValue: number) =>
+        isCardValueAce({ cardValue, numCardsInDeck })
+      ).length;
+      const newNumCardsLeft = cardsLeft - numCardsDealt;
+      const newNumAcesLeft = acesLeft - numDrawnAces;
+
+      if (newNumCardsLeft === 0) {
+        // The game has ended
+        const gameWon = numDrawnAces > 0;
+        setGameState(gameWon ? 'won' : 'lost');
+      }
+
+      setCardsDrawn(drawnCards);
+      setCardsLeft(newNumCardsLeft);
+      setAcesLeft(newNumAcesLeft);
     }
   };
 

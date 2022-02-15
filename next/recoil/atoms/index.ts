@@ -1,11 +1,6 @@
 import { atom } from 'recoil';
 import { AccountFormStateType, GameStateType } from '../../Components/types';
 
-export const offlineGameState = atom({
-  key: 'offlineGameState',
-  default: true,
-});
-
 export const loggedInState = atom({
   key: 'loggedInState',
   default: null as null | boolean,

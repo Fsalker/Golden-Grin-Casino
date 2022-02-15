@@ -35,7 +35,7 @@ const AccountForm: FunctionComponent = () => {
         jwt = data.register;
       }
 
-      localStorage.setItem(jwt, jwt);
+      localStorage.setItem('jwt', jwt);
       console.log(jwt);
       setErrorMessage('');
       setAccountFormStatus('invisible');

@@ -11,12 +11,13 @@ import {
   offlineGameState,
 } from '../../recoil/atoms';
 import { startGame } from '../requests/startGame';
+import { FunctionComponent } from 'react';
 
-type ResetProps = {
+interface ResetProps {
   text?: string;
-};
+}
 
-const Reset = ({ text = 'Reset' }: ResetProps) => {
+const Reset: FunctionComponent<ResetProps> = ({ text = 'Reset' }) => {
   const [numCardsInDeck] = useRecoilState(numCardsInDeckState);
   const [offlineGame] = useRecoilState(offlineGameState);
   const [, setGameInProgress] = useRecoilState(gameInProgressState);

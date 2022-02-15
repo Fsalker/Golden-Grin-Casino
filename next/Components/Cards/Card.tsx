@@ -1,13 +1,19 @@
 import { CardSymbols } from '../types';
+import { FunctionComponent } from 'react';
 
-export type CardParams = {
+export interface CardParams {
   cardNumber: string;
   cardSymbol: CardSymbols;
   cardIndex: number;
   canRotateCards: boolean;
-};
+}
 
-const Card = ({ cardNumber, cardSymbol, cardIndex, canRotateCards }: CardParams) => {
+const Card: FunctionComponent<CardParams> = ({
+  cardNumber,
+  cardSymbol,
+  cardIndex,
+  canRotateCards,
+}) => {
   const color = cardSymbol === '♣' || cardSymbol === '♠' ? 'black' : '#F64242';
 
   const mapCardIndexToExtraMarginTop = [0, 61 + 7 - 17, 84 - 17, 61 + 7 - 17, 0]; // For Desktop displays

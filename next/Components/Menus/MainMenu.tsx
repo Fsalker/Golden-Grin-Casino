@@ -7,6 +7,7 @@ import { useRecoilState } from 'recoil';
 import { accountFormState, loggedInState, numCardsInDeckState } from '../../recoil/atoms';
 import { checkIfUserIsLoggedIn } from '../../utils/auth';
 import AccountForm from '../Buttons/Authentication/AccountForm';
+import UserStats from './MainMenu/UserStats';
 
 const MainMenu: FunctionComponent = () => {
   const [loggedIn, setLoggedIn] = useRecoilState(loggedInState);
@@ -26,6 +27,7 @@ const MainMenu: FunctionComponent = () => {
   const loggedInButtons = (
     <>
       <Logout />
+      <UserStats />
     </>
   );
 

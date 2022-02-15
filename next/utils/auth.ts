@@ -1,4 +1,4 @@
-const jwtIsValid = (jwt: string | null): boolean => !!jwt; // TODO: Implement actual logging in
+const jwtIsValid = (jwt: string | null): boolean => !!jwt;
 
 export const checkIfUserIsLoggedIn = (): boolean => {
   // if (typeof window === 'undefined') {

@@ -28,6 +28,12 @@ export const typeDefs = gql`
     acesLeft: String
   }
 
+  type AccountHistory {
+    gamesPlayed: Int
+    winningStreak: Int
+    losingStreak: Int
+  }
+
   input AccountInput {
     username: String!
     password: String!
@@ -35,6 +41,7 @@ export const typeDefs = gql`
 
   type Query {
     currentGame: GamePublicData
+    accountHistory(spanMinutes: Int!): AccountHistory
   }
 
   type Mutation {

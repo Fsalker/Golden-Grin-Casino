@@ -2,7 +2,7 @@ import { JwtPayload } from '../types';
 import { AuthenticationError } from 'apollo-server-micro';
 import { isCardValueAce } from '../../../../utils/isCardValueAce';
 import { GameStateType } from '../../../../Components/types';
-import { getUserLatestGame } from '../common';
+import { getUserLatestGame, isGameWon } from '../common';
 
 export default async (_: any, __: any, { userId }: JwtPayload) => {
   if (!userId) {
@@ -17,10 +17,7 @@ export default async (_: any, __: any, { userId }: JwtPayload) => {
   }
 
   const numCardsInDeck = game.deck.length;
-  const lastDrawnCards = game.deck.slice(-(game.deck.length % 5));
-  const gameWon = !!lastDrawnCards.filter((cardValue) =>
-    isCardValueAce({ cardValue, numCardsInDeck })
-  ).length;
+  const gameWon = isGameWon(game);
 
   const cardsLeft = game.deck.length - game.currentCardIndex;
   const acesLeft = game.deck

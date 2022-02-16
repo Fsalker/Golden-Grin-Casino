@@ -12,6 +12,16 @@ module.exports = {
         'game-yellow': '#EFCE4B',
         'game-yellow-brighter': '#FFF48C',
       },
+      animation: {
+        card: 'card 0.4s ease-in-out 1',
+      },
+      keyframes: {
+        card: {
+          '0%': {
+            transform: 'rotate(0) scale(0, 0)',
+          },
+        },
+      },
     },
   },
   plugins: [],

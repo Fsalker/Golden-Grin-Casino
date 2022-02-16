@@ -38,7 +38,8 @@ const Card: FunctionComponent<CardParams> = ({
 
   return (
     <div
-      className="font-courierPrimeBold inline-block mr-7 ml-7 cursor-default select-none"
+      key={`card-div-${Math.random()}`}
+      className="font-courierPrimeBold inline-block mr-7 ml-7 cursor-default select-none animate-card"
       style={{ color, marginTop, transform }}
     >
       <div className="rounded-3xl bg-white w-[192px] h-[264px]">

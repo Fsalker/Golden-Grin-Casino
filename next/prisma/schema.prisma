@@ -26,4 +26,5 @@ model Game {
   user             User     @relation(fields: [userId], references: [id])
   deck             Int[]
   currentCardIndex Int      @default(0) // The top (undrawn) card's index
+  abandoned        Boolean  @default(false)
 }

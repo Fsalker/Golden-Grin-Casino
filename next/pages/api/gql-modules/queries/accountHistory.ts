@@ -9,7 +9,8 @@ const getGameSpreeCount = (games: Game[]) => {
     return 0;
   }
 
-  const isFirstGameInProgress = games[0].currentCardIndex < games[0].deck.length;
+  const isFirstGameInProgress =
+    !games[0].abandoned && games[0].currentCardIndex < games[0].deck.length;
   const startIndex = isFirstGameInProgress ? 1 : 0;
 
   if (startIndex >= games.length) {

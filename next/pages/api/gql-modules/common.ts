@@ -4,7 +4,8 @@ import { Game } from '@prisma/client';
 
 export const bcryptSaltRounds = 12;
 
-export const isGameAbandoned = (game: Game) => game.currentCardIndex !== game.deck.length;
+export const isGameAbandoned = (game: Game) =>
+  game.abandoned || game.currentCardIndex !== game.deck.length;
 
 export const isGameWon = (game: Game) => {
   if (isGameAbandoned(game)) {

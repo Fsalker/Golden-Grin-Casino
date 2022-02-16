@@ -2,11 +2,15 @@ import { ButtonComponent } from '../types';
 import SmallButton from './Wrappers/SmallButton';
 import { useRecoilState } from 'recoil';
 import { gameState } from '../../recoil/atoms';
+import leaveGameRequest from '../gql-requests/leaveGame';
 
 const LeaveGame: ButtonComponent = () => {
-  const [, setGameState] = useRecoilState(gameState);
+  const [gameStatus, setGameState] = useRecoilState(gameState);
 
-  const handleLeaveGame = () => {
+  const handleLeaveGame = async () => {
+    if (gameStatus === 'in progress') {
+      await leaveGameRequest();
+    }
     setGameState(null);
   };
 

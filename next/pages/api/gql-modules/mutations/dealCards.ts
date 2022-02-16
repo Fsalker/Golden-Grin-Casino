@@ -11,7 +11,7 @@ export default async (_: any, __: any, { userId }: JwtPayload) => {
   }
 
   const game = await getUserLatestGame(userId);
-  if (!game || game.currentCardIndex >= game.deck.length) {
+  if (!game || game.abandoned || game.currentCardIndex >= game.deck.length) {
     return null;
   }
 

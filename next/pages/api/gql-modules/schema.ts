@@ -20,6 +20,7 @@ export const typeDefs = gql`
 
     deck: [Int]!
     currentCardIndex: Int!
+    abandoned: Boolean!
   }
 
   type GamePublicData {
@@ -49,5 +50,6 @@ export const typeDefs = gql`
     register(accountInput: AccountInput!): String
     startGame(numCardsInDeck: Int!): Boolean
     dealCards: [Int]
+    leaveGame: Boolean
   }
 `;

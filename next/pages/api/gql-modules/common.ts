@@ -1,6 +1,6 @@
 import prisma from '../../../prisma/prismaClient';
 import { isCardValueAce } from '../../../utils/isCardValueAce';
-import { Game } from '../../../prisma/generated/prisma-client-js/index';
+import { Game } from '@prisma/client';
 
 export const bcryptSaltRounds = 12;
 

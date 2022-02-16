@@ -2,7 +2,7 @@ import { AccountHistoryParams, JwtPayload } from '../types';
 import { AuthenticationError } from 'apollo-server-micro';
 import prisma from '../../../../prisma/prismaClient';
 import { isGameWon } from '../common';
-import { Game } from '../../../../prisma/generated/prisma-client-js';
+import { Game } from '@prisma/client';
 
 const getGameSpreeCount = (games: Game[]) => {
   if (games.length === 0) {

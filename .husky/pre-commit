@@ -1,4 +1,9 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
-yarn run lint-staged
+cd next
+npx lint-staged
+npx prisma format
+npm run lint
+
+#npx prettier "**/*.{tsx,ts,css}" "tailwind.config.js"

@@ -2,6 +2,7 @@
 . "$(dirname "$0")/_/husky.sh"
 
 cd next
+npx tsc --noEmit
 npx lint-staged
 npx prisma format
 npm run lint

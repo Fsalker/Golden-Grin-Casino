@@ -50,11 +50,11 @@ const AccountForm: FunctionComponent = () => {
   };
 
   return (
-    <div className="w-[400px] font-courierPrimeBold mt-8">
+    <div className="mt-8 w-[400px] font-courierPrimeBold">
       {/*<h1 className="text-game-yellow">{headerText}</h1>*/}
       <div>
         <input
-          className="w-full mb-2"
+          className="mb-2 w-full"
           placeholder="Your username..."
           onChange={(e) => setUsername(e.target.value)}
           value={username}
@@ -78,7 +78,7 @@ const AccountForm: FunctionComponent = () => {
           <SmallButton>{submitText}</SmallButton>
         </div>
       </div>
-      <div className="text-red-500 font-courierPrime mt-2 flex justify-center">{errorMessage}</div>
+      <div className="flex justify-center mt-2 font-courierPrime text-red-500">{errorMessage}</div>
     </div>
   );
 };

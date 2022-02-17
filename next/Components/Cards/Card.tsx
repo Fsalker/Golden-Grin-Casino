@@ -39,10 +39,10 @@ const Card: FunctionComponent<CardParams> = ({
   return (
     <div
       key={`card-div-${Math.random()}`}
-      className="font-courierPrimeBold inline-block mr-7 ml-7 cursor-default select-none animate-card"
+      className="inline-block mx-7 font-courierPrimeBold animate-card cursor-default select-none"
       style={{ color, marginTop, transform }}
     >
-      <div className="rounded-3xl bg-white w-[192px] h-[264px]">
+      <div className="w-[192px] h-[264px] bg-white rounded-3xl">
         <div className="pt-[18px] ml-6 text-[90px] leading-[101px]">{cardNumber}</div>
         <div className="mt-[-13px] ml-[36px] text-[56px] leading-[56px]">
           {/*{cardSymbol}*/}

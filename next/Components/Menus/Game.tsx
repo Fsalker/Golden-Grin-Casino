@@ -59,7 +59,7 @@ const Game: FunctionComponent = () => {
       <div className="flex flex-col items-center mx-16 mt-4">
         <Reset text={'Play Again'} />
       </div>
-      <div className="flex items-left mx-16 mt-4">
+      <div className="flex mx-16 mt-4 items-left">
         <LeaveGame />
       </div>
     </div>

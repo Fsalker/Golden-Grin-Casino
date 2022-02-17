@@ -11,7 +11,7 @@ const Home: NextPage = () => {
   const gameInProgress = gameStatus !== null;
 
   return (
-    <div className="bg-gradient-to-b h-screen">
+    <div className="h-screen bg-gradient-to-b">
       <Head>
         <title>Card Game</title>
         <meta name="description" content="Now available in 4K" />

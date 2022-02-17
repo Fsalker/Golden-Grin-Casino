@@ -50,7 +50,7 @@ const UserStats: FunctionComponent = () => {
     <div className="flex flex-col items-center w-[400px] mt-4">
       <div className="text-gray-300">
         {loader}
-        You have played {numGames} game{numGames && numGames > 1 ? 's' : ''} in the last{' '}
+        You have played {numGames} game{numGames && numGames === 1 ? '' : 's'} in the last{' '}
         {spanMinutes} minutes.
       </div>
       <input

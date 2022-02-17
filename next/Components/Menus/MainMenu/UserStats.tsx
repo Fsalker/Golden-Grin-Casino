@@ -9,7 +9,6 @@ const UserStats: FunctionComponent = () => {
   const [showLoader, setShowLoader] = useState(false);
 
   const getAccountHistory = async () => {
-    // TODO: Add a debounce timer to the input slider
     const { data } = await accountHistoryRequest({ spanMinutes });
     console.log('Fetching...');
 

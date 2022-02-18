@@ -1,6 +1,6 @@
 import { FunctionComponent, useEffect, useState } from "react";
 import accountHistoryRequest from "../../gql-requests/accountHistory";
-import ConfettiLeft from "../../../../public/loading.svg";
+import Loading from "../../../../public/loading.svg";
 import { jwtInvalidErrorMessage } from "../../../pages/api/gql-modules/types";
 import { handleLogout } from "../../Buttons/Authentication/Logout";
 import { useRecoilState } from "recoil";
@@ -60,9 +60,7 @@ const UserStats: FunctionComponent = () => {
     </div>
   );
 
-  const loader = showLoader && (
-    <img src={ConfettiLeft.src} className="inline w-8" />
-  );
+  const loader = showLoader && <img src={Loading.src} className="inline w-8" />;
 
   return (
     <div className="flex flex-col items-center mt-4 w-[400px]">

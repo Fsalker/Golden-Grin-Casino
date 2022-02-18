@@ -7,9 +7,9 @@ import AcesLeftCounter from "../Counters/AcesLeftCounter";
 import CardsLeftCounter from "../Counters/CardsLeftCounter";
 import { useRecoilState } from "recoil";
 import { gameState } from "../../recoil/atoms";
-import GameWonBanner from "../../public/gameWonBannerDesktop.svg";
-import ConfettiLeft from "../../public/confettiLeft.svg";
-import ConfettiRight from "../../public/confettiRight.svg";
+import GameWonBanner from "../../../public/gameWonBannerDesktop.svg";
+import ConfettiLeft from "../../../public/confettiLeft.svg";
+import ConfettiRight from "../../../public/confettiRight.svg";
 
 const Game: FunctionComponent = () => {
   const [gameStatus] = useRecoilState(gameState);

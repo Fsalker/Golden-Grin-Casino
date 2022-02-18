@@ -5,7 +5,7 @@ import {
 } from "../types";
 import { AuthenticationError } from "apollo-server-micro";
 import { generateDeck } from "../../../../utils/generateDeck";
-import prisma from "../../../../prisma/prismaClient";
+import prisma from "../../../../../prisma/prismaClient";
 
 export default async (
   _: any,

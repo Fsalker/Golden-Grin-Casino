@@ -1,7 +1,7 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import MainMenu from "../Components/Menus/MainMenu";
-import Game from "../Components/Menus/Game";
+import MainMenu from "../components/Menus/MainMenu";
+import Game from "../components/Menus/Game";
 import { useRecoilState } from "recoil";
 import { gameState } from "../recoil/atoms";
 

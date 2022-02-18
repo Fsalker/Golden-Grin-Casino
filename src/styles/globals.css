@@ -4,17 +4,17 @@
 
 @font-face {
   font-family: "AlfaSlabOne";
-  src: url("../public/fonts/AlfaSlabOne-Regular.ttf");
+  src: url("../../public/fonts/AlfaSlabOne-Regular.ttf");
 }
 
 @font-face {
   font-family: "CourierPrime";
-  src: url("../public/fonts/CourierPrime-Regular.ttf");
+  src: url("../../public/fonts/CourierPrime-Regular.ttf");
 }
 
 @font-face {
   font-family: "CourierPrimeBold";
-  src: url("../public/fonts/CourierPrime-Bold.ttf");
+  src: url("../../public/fonts/CourierPrime-Bold.ttf");
 }
 
 html {

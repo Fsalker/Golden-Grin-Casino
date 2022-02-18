@@ -1,6 +1,6 @@
 import { jwtInvalidErrorMessage, JwtPayload } from "../types";
 import { AuthenticationError } from "apollo-server-micro";
-import prisma from "../../../../prisma/prismaClient";
+import prisma from "../../../../../prisma/prismaClient";
 import { getUserLatestGame } from "../common";
 
 export default async (_: any, __: any, { userId }: JwtPayload) => {

@@ -1,5 +1,5 @@
 import { authenticationFailedErrorMessage, LoginParams } from "../types";
-import prisma from "../../../../prisma/prismaClient";
+import prisma from "../../../../../prisma/prismaClient";
 import bcrypt from "bcrypt";
 import { generateJwt } from "../auth";
 

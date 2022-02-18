@@ -1,9 +1,9 @@
 import { CardSymbols } from "../types";
 import { FunctionComponent } from "react";
-import Club from "../../public/card-symbols/club.svg";
-import Diamond from "../../public/card-symbols/diamond.svg";
-import Heart from "../../public/card-symbols/heart.svg";
-import Spade from "../../public/card-symbols/spade.svg";
+import Club from "../../../public/card-symbols/club.svg";
+import Diamond from "../../../public/card-symbols/diamond.svg";
+import Heart from "../../../public/card-symbols/heart.svg";
+import Spade from "../../../public/card-symbols/spade.svg";
 
 export interface CardParams {
   cardNumber: string;

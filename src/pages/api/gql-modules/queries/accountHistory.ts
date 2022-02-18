@@ -4,7 +4,7 @@ import {
   JwtPayload,
 } from "../types";
 import { AuthenticationError } from "apollo-server-micro";
-import prisma from "../../../../prisma/prismaClient";
+import prisma from "../../../../../prisma/prismaClient";
 import { isGameWon } from "../common";
 import { Game } from "@prisma/client";
 

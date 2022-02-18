@@ -1,6 +1,6 @@
 import { FunctionComponent, useEffect, useState } from "react";
 import accountHistoryRequest from "../../gql-requests/accountHistory";
-import ConfettiLeft from "../../../public/loading.svg";
+import ConfettiLeft from "../../../../public/loading.svg";
 import { jwtInvalidErrorMessage } from "../../../pages/api/gql-modules/types";
 import { handleLogout } from "../../Buttons/Authentication/Logout";
 import { useRecoilState } from "recoil";

@@ -1,5 +1,5 @@
 import { atom } from "recoil";
-import { AccountFormStateType, GameStateType } from "../../Components/types";
+import { AccountFormStateType, GameStateType } from "../../components/types";
 
 export const loggedInState = atom({
   key: "loggedInState",

@@ -1,7 +1,7 @@
 import { jwtInvalidErrorMessage, JwtPayload } from "../types";
 import { AuthenticationError } from "apollo-server-micro";
 import { isCardValueAce } from "../../../../utils/isCardValueAce";
-import { GameStateType } from "../../../../Components/types";
+import { GameStateType } from "../../../../components/types";
 import { getUserLatestGame, isGameWon } from "../common";
 
 export default async (_: any, __: any, { userId }: JwtPayload) => {

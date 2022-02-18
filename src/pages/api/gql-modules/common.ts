@@ -1,4 +1,4 @@
-import prisma from "../../../prisma/prismaClient";
+import prisma from "../../../../prisma/prismaClient";
 import { isCardValueAce } from "../../../utils/isCardValueAce";
 import { Game } from "@prisma/client";
 

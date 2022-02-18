@@ -1,42 +1,42 @@
-import { atom } from 'recoil';
-import { AccountFormStateType, GameStateType } from '../../Components/types';
+import { atom } from "recoil";
+import { AccountFormStateType, GameStateType } from "../../Components/types";
 
 export const loggedInState = atom({
-  key: 'loggedInState',
+  key: "loggedInState",
   default: null as null | boolean,
 });
 
 export const numCardsInDeckState = atom({
-  key: 'numCardsInDeckState',
+  key: "numCardsInDeckState",
   default: 52,
 });
 
 export const cardsLeftState = atom({
-  key: 'cardsLeftState',
+  key: "cardsLeftState",
   default: 52,
 });
 
 export const acesLeftState = atom({
-  key: 'acesLeftState',
+  key: "acesLeftState",
   default: 4,
 });
 
 export const cardsDrawnState = atom({
-  key: 'cardsDrawnState',
+  key: "cardsDrawnState",
   default: [] as Array<number>,
 });
 
 export const deckValuesState = atom({
-  key: 'deckValues',
+  key: "deckValues",
   default: [] as Array<number>,
 });
 
 export const gameState = atom({
-  key: 'gameState',
+  key: "gameState",
   default: null as GameStateType,
 });
 
 export const accountFormState = atom({
-  key: 'showAccountFormState',
-  default: 'invisible' as AccountFormStateType,
+  key: "showAccountFormState",
+  default: "invisible" as AccountFormStateType,
 });

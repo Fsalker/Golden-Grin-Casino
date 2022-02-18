@@ -1,4 +1,4 @@
-import { SmallButtonType } from '../../types';
+import { SmallButtonType } from "../../types";
 
 const SmallButton: SmallButtonType = ({ children }) => {
   return (

@@ -1,6 +1,6 @@
-import { ButtonComponent } from '../types';
-import LargeButton from './Wrappers/LargeButton';
-import { useRecoilState } from 'recoil';
+import { ButtonComponent } from "../types";
+import LargeButton from "./Wrappers/LargeButton";
+import { useRecoilState } from "recoil";
 import {
   acesLeftState,
   cardsDrawnState,
@@ -9,8 +9,8 @@ import {
   gameState,
   loggedInState,
   numCardsInDeckState,
-} from '../../recoil/atoms';
-import { startGame } from './common';
+} from "../../recoil/atoms";
+import { startGame } from "./common";
 
 const StartGameBtn: ButtonComponent = () => {
   const [numCardsInDeck] = useRecoilState(numCardsInDeckState);

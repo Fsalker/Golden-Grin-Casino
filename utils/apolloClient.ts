@@ -1,17 +1,17 @@
-import { ApolloClient, createHttpLink, InMemoryCache } from '@apollo/client';
-import { typeDefs } from '../pages/api/gql-modules/schema';
-import { setContext } from '@apollo/client/link/context';
+import { ApolloClient, createHttpLink, InMemoryCache } from "@apollo/client";
+import { typeDefs } from "../pages/api/gql-modules/schema";
+import { setContext } from "@apollo/client/link/context";
 
 const httpLink = createHttpLink({
-  uri: 'http://localhost:3000/api/graphql',
+  uri: "http://localhost:3000/api/graphql",
 });
 
 const authLink = setContext((_, { headers }) => {
-  const jwt = localStorage.getItem('jwt');
+  const jwt = localStorage.getItem("jwt");
   return {
     headers: {
       ...headers,
-      authorization: jwt ? jwt : '',
+      authorization: jwt ? jwt : "",
     },
   };
 });

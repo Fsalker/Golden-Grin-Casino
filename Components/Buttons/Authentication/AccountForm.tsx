@@ -1,33 +1,34 @@
-import { FunctionComponent, useState } from 'react';
-import { useRecoilState } from 'recoil';
-import { accountFormState, loggedInState } from '../../../recoil/atoms';
-import SmallButton from '../Wrappers/SmallButton';
+import { FunctionComponent, useState } from "react";
+import { useRecoilState } from "recoil";
+import { accountFormState, loggedInState } from "../../../recoil/atoms";
+import SmallButton from "../Wrappers/SmallButton";
 import {
   authenticationFailedErrorMessage,
   usernameTakenErrorMessage,
-} from '../../../pages/api/gql-modules/types';
-import loginRequest from '../../gql-requests/login';
-import registerRequest from '../../gql-requests/register';
+} from "../../../pages/api/gql-modules/types";
+import loginRequest from "../../gql-requests/login";
+import registerRequest from "../../gql-requests/register";
 
 const AccountForm: FunctionComponent = () => {
-  const [accountFormStatus, setAccountFormStatus] = useRecoilState(accountFormState);
-  const [errorMessage, setErrorMessage] = useState('');
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [accountFormStatus, setAccountFormStatus] =
+    useRecoilState(accountFormState);
+  const [errorMessage, setErrorMessage] = useState("");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
   const [, setLoggedIn] = useRecoilState(loggedInState);
 
   // const headerText =
   //   accountFormStatus === 'logging in' ? 'Log into your account' : 'Register a new account';
-  const submitText = accountFormStatus === 'logging in' ? 'Login' : 'Register';
+  const submitText = accountFormStatus === "logging in" ? "Login" : "Register";
 
   const handleCancel = () => {
-    setAccountFormStatus('invisible');
+    setAccountFormStatus("invisible");
   };
 
   const handleSubmit = async () => {
     try {
       let jwt;
-      if (accountFormStatus === 'logging in') {
+      if (accountFormStatus === "logging in") {
         const { data } = await loginRequest({ username, password });
         jwt = data.login;
       } else {
@@ -35,16 +36,20 @@ const AccountForm: FunctionComponent = () => {
         jwt = data.register;
       }
 
-      localStorage.setItem('jwt', jwt);
-      setErrorMessage('');
-      setAccountFormStatus('invisible');
+      localStorage.setItem("jwt", jwt);
+      setErrorMessage("");
+      setAccountFormStatus("invisible");
       setLoggedIn(jwt);
     } catch (err: any) {
-      if ([usernameTakenErrorMessage, authenticationFailedErrorMessage].includes(err.message)) {
+      if (
+        [usernameTakenErrorMessage, authenticationFailedErrorMessage].includes(
+          err.message
+        )
+      ) {
         setErrorMessage(err.message);
       } else {
         console.error(err);
-        setErrorMessage('An unexpected error has occurred. Please try again.');
+        setErrorMessage("An unexpected error has occurred. Please try again.");
       }
     }
   };
@@ -78,7 +83,9 @@ const AccountForm: FunctionComponent = () => {
           <SmallButton>{submitText}</SmallButton>
         </div>
       </div>
-      <div className="flex justify-center mt-2 font-courierPrime text-red-500">{errorMessage}</div>
+      <div className="flex justify-center mt-2 font-courierPrime text-red-500">
+        {errorMessage}
+      </div>
     </div>
   );
 };

@@ -8,7 +8,7 @@ export const checkIfUserIsLoggedIn = (): boolean => {
   // }
   // ^Fixed by using useEffect()
 
-  const jwt: string | null = localStorage.getItem('jwt');
+  const jwt: string | null = localStorage.getItem("jwt");
 
   return jwtIsValid(jwt);
 };

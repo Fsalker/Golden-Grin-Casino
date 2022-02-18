@@ -1,21 +1,26 @@
-import { FunctionComponent, useEffect } from 'react';
-import StartGameBtn from '../Buttons/StartGameBtn';
-import Logout from '../Buttons/Authentication/Logout';
-import Login from '../Buttons/Authentication/Login';
-import Register from '../Buttons/Authentication/Register';
-import { useRecoilState } from 'recoil';
-import { accountFormState, loggedInState, numCardsInDeckState } from '../../recoil/atoms';
-import { checkIfUserIsLoggedIn } from '../../utils/auth';
-import AccountForm from '../Buttons/Authentication/AccountForm';
-import UserStats from './MainMenu/UserStats';
+import { FunctionComponent, useEffect } from "react";
+import StartGameBtn from "../Buttons/StartGameBtn";
+import Logout from "../Buttons/Authentication/Logout";
+import Login from "../Buttons/Authentication/Login";
+import Register from "../Buttons/Authentication/Register";
+import { useRecoilState } from "recoil";
+import {
+  accountFormState,
+  loggedInState,
+  numCardsInDeckState,
+} from "../../recoil/atoms";
+import { checkIfUserIsLoggedIn } from "../../utils/auth";
+import AccountForm from "../Buttons/Authentication/AccountForm";
+import UserStats from "./MainMenu/UserStats";
 
 const MainMenu: FunctionComponent = () => {
   const [loggedIn, setLoggedIn] = useRecoilState(loggedInState);
-  const [numCardsInDeck, setNumCardsInDeck] = useRecoilState(numCardsInDeckState);
+  const [numCardsInDeck, setNumCardsInDeck] =
+    useRecoilState(numCardsInDeckState);
   const [accountFormStatus] = useRecoilState(accountFormState);
 
   const loggedOutButtons =
-    accountFormStatus === 'invisible' ? (
+    accountFormStatus === "invisible" ? (
       <>
         <Register />
         <Login />
@@ -45,7 +50,8 @@ const MainMenu: FunctionComponent = () => {
         <StartGameBtn />
         <div className="flex">
           <span className="font-courierPrimeBold">
-            Cards per suit {numCardsInDeck / 4 < 10 && '\u00A0'}({numCardsInDeck / 4}):
+            Cards per suit {numCardsInDeck / 4 < 10 && "\u00A0"}(
+            {numCardsInDeck / 4}):
           </span>
           <input
             type="range"

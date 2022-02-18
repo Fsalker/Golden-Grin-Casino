@@ -1,7 +1,7 @@
-import { SetterOrUpdater } from 'recoil';
-import { generateDeck } from '../../utils/generateDeck';
-import { GameStateType } from '../types';
-import startGameRequest from '../gql-requests/startGame';
+import { SetterOrUpdater } from "recoil";
+import { generateDeck } from "../../utils/generateDeck";
+import { GameStateType } from "../types";
+import startGameRequest from "../gql-requests/startGame";
 
 export type StartGameParams = {
   setCardsLeft: SetterOrUpdater<number>;
@@ -31,5 +31,5 @@ export const startGame = async ({
   }
   setCardsLeft(numCardsInDeck);
   setAcesLeft(4);
-  setGameState('in progress');
+  setGameState("in progress");
 };

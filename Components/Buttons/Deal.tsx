@@ -1,6 +1,6 @@
-import { ButtonComponent } from '../types';
-import LargeButton from './Wrappers/LargeButton';
-import { useRecoilState } from 'recoil';
+import { ButtonComponent } from "../types";
+import LargeButton from "./Wrappers/LargeButton";
+import { useRecoilState } from "recoil";
 import {
   acesLeftState,
   cardsDrawnState,
@@ -9,9 +9,9 @@ import {
   gameState,
   numCardsInDeckState,
   loggedInState,
-} from '../../recoil/atoms';
-import { isCardValueAce } from '../../utils/isCardValueAce';
-import dealCardsRequest from '../gql-requests/dealCards';
+} from "../../recoil/atoms";
+import { isCardValueAce } from "../../utils/isCardValueAce";
+import dealCardsRequest from "../gql-requests/dealCards";
 
 const Deal: ButtonComponent = () => {
   const [numCardsInDeck] = useRecoilState(numCardsInDeckState);
@@ -48,7 +48,7 @@ const Deal: ButtonComponent = () => {
       if (newNumCardsLeft === 0) {
         // The game has ended
         const gameWon = numDrawnAces > 0;
-        setGameState(gameWon ? 'won' : 'lost');
+        setGameState(gameWon ? "won" : "lost");
       }
 
       setCardsDrawn(drawnCards);

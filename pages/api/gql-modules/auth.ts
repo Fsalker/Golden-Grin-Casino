@@ -1,5 +1,5 @@
-import jwt from 'jsonwebtoken';
-import { JwtPayload } from './types';
+import jwt from "jsonwebtoken";
+import { JwtPayload } from "./types";
 
 type GenerateJwtParams = {
   userId: number;
@@ -17,4 +17,5 @@ export const validateJwt = (token: string): boolean => {
   }
 };
 
-export const getJwtPayload = (token: string): JwtPayload => jwt.decode(token) as JwtPayload;
+export const getJwtPayload = (token: string): JwtPayload =>
+  jwt.decode(token) as JwtPayload;

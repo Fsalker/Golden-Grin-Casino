@@ -1,5 +1,5 @@
-import SmallButton from './Wrappers/SmallButton';
-import { useRecoilState } from 'recoil';
+import SmallButton from "./Wrappers/SmallButton";
+import { useRecoilState } from "recoil";
 import {
   acesLeftState,
   cardsDrawnState,
@@ -8,15 +8,15 @@ import {
   gameState,
   loggedInState,
   numCardsInDeckState,
-} from '../../recoil/atoms';
-import { startGame } from './common';
-import { FunctionComponent } from 'react';
+} from "../../recoil/atoms";
+import { startGame } from "./common";
+import { FunctionComponent } from "react";
 
 interface ResetProps {
   text?: string;
 }
 
-const Reset: FunctionComponent<ResetProps> = ({ text = 'Reset' }) => {
+const Reset: FunctionComponent<ResetProps> = ({ text = "Reset" }) => {
   const [numCardsInDeck] = useRecoilState(numCardsInDeckState);
   const [loggedIn] = useRecoilState(loggedInState);
   const [, setCardsLeft] = useRecoilState(cardsLeftState);

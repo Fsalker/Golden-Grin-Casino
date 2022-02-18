@@ -3,5 +3,7 @@ export type isCardValueAceParams = {
   numCardsInDeck: number;
 };
 
-export const isCardValueAce = ({ cardValue, numCardsInDeck }: isCardValueAceParams) =>
-  cardValue % (numCardsInDeck / 4) === 0;
+export const isCardValueAce = ({
+  cardValue,
+  numCardsInDeck,
+}: isCardValueAceParams) => cardValue % (numCardsInDeck / 4) === 0;

@@ -1,4 +1,10 @@
-const Counter = ({ value, description }: { value: number; description: string }) => {
+const Counter = ({
+  value,
+  description,
+}: {
+  value: number;
+  description: string;
+}) => {
   return (
     <div>
       <div
@@ -6,7 +12,9 @@ const Counter = ({ value, description }: { value: number; description: string })
     text-white bg-black mt-[90px] font-courierPrimeBold"
       >
         <div className="mt-5 text-[48px] leading-[52px]">{value}</div>
-        <div className="mb-4 font-courierPrimeBold text-[20px] leading-[22px]">{description}</div>
+        <div className="mb-4 font-courierPrimeBold text-[20px] leading-[22px]">
+          {description}
+        </div>
       </div>
     </div>
   );

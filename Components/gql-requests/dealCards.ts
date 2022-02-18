@@ -1,5 +1,5 @@
-import apolloClient from '../../utils/apolloClient';
-import { gql } from '@apollo/client';
+import apolloClient from "../../utils/apolloClient";
+import { gql } from "@apollo/client";
 
 export default async () => {
   const { data, errors } = await apolloClient.mutate({

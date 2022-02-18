@@ -1,4 +1,4 @@
-import { LargeButtonType } from '../../types';
+import { LargeButtonType } from "../../types";
 
 const LargeButton: LargeButtonType = ({ children }) => {
   return (

@@ -1,6 +1,6 @@
-import prisma from '../../../prisma/prismaClient';
-import { isCardValueAce } from '../../../utils/isCardValueAce';
-import { Game } from '@prisma/client';
+import prisma from "../../../prisma/prismaClient";
+import { isCardValueAce } from "../../../utils/isCardValueAce";
+import { Game } from "@prisma/client";
 
 export const bcryptSaltRounds = 12;
 
@@ -26,7 +26,7 @@ export const getUserLatestGame = async (userId: number) => {
   const game = (
     await prisma.game.findMany({
       where: { userId },
-      orderBy: { createdAt: 'desc' },
+      orderBy: { createdAt: "desc" },
       take: 1,
     })
   )?.[0];

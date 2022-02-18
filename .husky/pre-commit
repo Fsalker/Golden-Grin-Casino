@@ -1,10 +1,9 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
-cd next
 npx tsc --noEmit
 npx lint-staged
 npx prisma format
-npm run lint
+npm run lint # Note: "npx eslint" seems to do the same thing, but it also suggests you to run --fix. It seems better...
 
 #npx prettier "**/*.{tsx,ts,css}" "tailwind.config.js"

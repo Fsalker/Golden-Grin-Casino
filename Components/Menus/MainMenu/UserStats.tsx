@@ -25,7 +25,6 @@ const UserStats: FunctionComponent = () => {
         return;
       }
     }
-    console.log("Fetching...");
 
     setNumGames(data.accountHistory.gamesPlayed);
     setStreak(

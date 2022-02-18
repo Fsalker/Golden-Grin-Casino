@@ -1,1 +1,0 @@
-export { sampleUser } from './user';

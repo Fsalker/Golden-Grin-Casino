@@ -45,20 +45,26 @@ const Card: FunctionComponent<CardParams> = ({
   return (
     <div
       key={`card-div-${Math.random()}`}
-      className="inline-block mx-7 font-courierPrimeBold animate-card cursor-default select-none"
+      className="inline-block sm:mx-[28px] mx-[10px] font-courierPrimeBold animate-card cursor-default select-none"
       style={{ color, marginTop, transform }}
     >
-      <div className="w-[192px] h-[264px] bg-white rounded-3xl">
-        <div className="pt-[18px] ml-6 text-[90px] leading-[101px]">
+      <div className="sm:w-[192px] w-[103px] sm:h-[264px] h-[141px] bg-white sm:rounded-[24px] rounded-[10px]">
+        <div className="sm:pt-[18px] pt-[17px] sm:ml-[24px] ml-[17px] sm:text-[90px] text-[38px] sm:leading-[101px] leading-[48px] sm:tracking-[-12px] tracking-[-6px]">
           {cardNumber}
         </div>
-        <div className="mt-[-13px] ml-[36px] text-[56px] leading-[56px]">
+        <div className="sm:mt-[-13px] mt-[-5px] sm:ml-[37px] ml-[20px] text-[56px] leading-[56px]">
           {/*{cardSymbol}*/}
-          <img src={cardSymbolSrc} className="w-[36px] h-[36px]" />
+          <img
+            src={cardSymbolSrc}
+            className="sm:w-[36px] w-[19px] sm:h-[36px] h-[19px]"
+          />
         </div>
-        <div className="mt-0 ml-[71px] text-[130px]">
+        <div className="mt-0 sm:ml-[71px] ml-[38px] text-[130px]">
           {/*{cardSymbol}*/}
-          <img src={cardSymbolSrc} className="w-[90px] h-[90px]" />
+          <img
+            src={cardSymbolSrc}
+            className="sm:w-[90px] w-[48px] sm:h-[90px] h-[48px]"
+          />
         </div>
       </div>
     </div>

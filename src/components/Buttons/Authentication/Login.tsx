@@ -12,7 +12,7 @@ const Login: FunctionComponent = () => {
 
   return (
     <div onClick={handleLogin}>
-      <LargeButton>Login</LargeButton>
+      <LargeButton smallerOnSmallDevices={true}>Login</LargeButton>
     </div>
   );
 };

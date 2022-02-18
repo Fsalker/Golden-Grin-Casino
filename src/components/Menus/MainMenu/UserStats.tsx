@@ -63,8 +63,8 @@ const UserStats: FunctionComponent = () => {
   const loader = showLoader && <img src={Loading.src} className="inline w-8" />;
 
   return (
-    <div className="flex flex-col items-center mt-4 w-[400px]">
-      <div className="text-gray-300">
+    <div className="flex flex-col items-center mt-4 sm:w-[400px] w-[90%]">
+      <div className="text-gray-300 text-center">
         {loader}
         You have played {numGames} game{numGames && numGames === 1 ? "" : "s"}{" "}
         in the last {spanMinutes} minutes.

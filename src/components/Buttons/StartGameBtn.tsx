@@ -35,7 +35,7 @@ const StartGameBtn: ButtonComponent = () => {
 
   return (
     <div onClick={handleStartGame}>
-      <LargeButton>Start Game</LargeButton>
+      <LargeButton smallerOnSmallDevices={true}>Start Game</LargeButton>
     </div>
   );
 };

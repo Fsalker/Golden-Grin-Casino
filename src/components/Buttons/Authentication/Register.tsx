@@ -12,7 +12,7 @@ const Register: FunctionComponent = () => {
 
   return (
     <div onClick={handleRegister}>
-      <LargeButton>Register</LargeButton>
+      <LargeButton smallerOnSmallDevices={true}>Register</LargeButton>
     </div>
   );
 };

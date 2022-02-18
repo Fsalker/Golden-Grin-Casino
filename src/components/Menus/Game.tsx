@@ -7,7 +7,7 @@ import AcesLeftCounter from "../Counters/AcesLeftCounter";
 import CardsLeftCounter from "../Counters/CardsLeftCounter";
 import { useRecoilState } from "recoil";
 import { gameState } from "../../recoil/atoms";
-import GameWonBanner from "../../../public/gameWonBannerDesktop.svg";
+import GameWonBannerDesktop from "../../../public/gameWonBannerDesktop.svg";
 import ConfettiLeft from "../../../public/confettiLeft.svg";
 import ConfettiRight from "../../../public/confettiRight.svg";
 
@@ -17,8 +17,14 @@ const Game: FunctionComponent = () => {
   const confetti =
     gameStatus === "won" ? (
       <div className="fixed top-[40%]">
-        <img src={ConfettiLeft.src} className="fixed left-[5%]" />
-        <img src={ConfettiRight.src} className="fixed right-[5%]" />
+        <img
+          src={ConfettiLeft.src}
+          className="fixed sm:left-[90px] left-[16px] w-[70px] h-[119px] sm:w-[231px] sm:h-[392px]"
+        />
+        <img
+          src={ConfettiRight.src}
+          className="fixed sm:right-[90px] right-[16px] w-[86px] h-[109px] sm:w-[286px] sm:h-[362px]"
+        />
       </div>
     ) : (
       ""
@@ -26,8 +32,8 @@ const Game: FunctionComponent = () => {
 
   const winBanner =
     gameStatus === "won" ? (
-      <div className="flex justify-center mt-[-46px] mb-[-24px]">
-        <img src={GameWonBanner.src} />
+      <div className="flex justify-center sm:mt-[-46px] mt-[-40px] mb-[-24px]">
+        <img src={GameWonBannerDesktop.src} />
       </div>
     ) : (
       ""
@@ -35,7 +41,7 @@ const Game: FunctionComponent = () => {
 
   const loseText = (
     <div
-      className="flex flex-col items-center font-courierPrime text-[36px] text-white"
+      className="flex flex-col items-center font-courierPrime sm:text-[36px] text-[24px] text-white"
       style={{ visibility: gameStatus === "lost" ? "visible" : "hidden" }}
     >
       <div>You lose.</div>
@@ -46,7 +52,7 @@ const Game: FunctionComponent = () => {
   const unfinishedGameButtons = (
     <>
       <Deal />
-      <div className="flex justify-between mx-16 mt-4">
+      <div className="flex justify-between sm:mx-16 sm:mt-4 mt-[34px] mx-4">
         <LeaveGame />
         <Reset />
       </div>

@@ -1,6 +1,6 @@
 import { CardSymbols } from "../types";
 import Card from "./Card";
-import { FunctionComponent } from "react";
+import { FunctionComponent, useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 import {
   cardsDrawnState,
@@ -15,8 +15,22 @@ const DrawnCards: FunctionComponent = () => {
   const [numCardsInDeck] = useRecoilState(numCardsInDeckState);
   const [cardsDrawn] = useRecoilState(cardsDrawnState);
   const [gameStatus] = useRecoilState(gameState);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
-  const canRotateCards = gameStatus === "in progress"; // TODO: Also, don't rotate them when we're on a small display
+  useEffect(() => {
+    const handleResize = () => {
+      const newWindowWidth = window.innerWidth;
+      if (windowWidth !== newWindowWidth) {
+        setWindowWidth(newWindowWidth);
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const isTinyScreen = windowWidth < 640;
+  const canRotateCards = !isTinyScreen && gameStatus === "in progress"; // TODO: Also, don't rotate them when we're on a small display
 
   const cards = cardsDrawn.map((cardValue, index) => {
     if (cardValue < 0 || cardValue >= numCardsInDeck) {
@@ -44,7 +58,20 @@ const DrawnCards: FunctionComponent = () => {
     );
   });
 
-  return <div className="flex justify-center">{cards}</div>;
+  const cardsDiv = !isTinyScreen ? (
+    <div className="flex justify-center">{cards}</div>
+  ) : (
+    <>
+      <div className="flex justify-center">{cards.slice(0, 3)}</div>
+      <div
+        className={`flex justify-center ${cards.length > 3 ? "mt-[20px]" : ""}`}
+      >
+        {cards.slice(3, 5)}
+      </div>
+    </>
+  );
+
+  return <div>{cardsDiv}</div>;
 };
 
 export default DrawnCards;

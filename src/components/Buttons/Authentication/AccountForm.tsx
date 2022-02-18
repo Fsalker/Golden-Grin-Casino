@@ -55,7 +55,7 @@ const AccountForm: FunctionComponent = () => {
   };
 
   return (
-    <div className="mt-8 w-[400px] font-courierPrimeBold">
+    <div className="mt-8 sm:w-[400px] w-[90%] font-courierPrimeBold">
       {/*<h1 className="text-game-yellow">{headerText}</h1>*/}
       <div>
         <input

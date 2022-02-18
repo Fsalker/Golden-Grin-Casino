@@ -16,7 +16,7 @@ const LeaveGame: ButtonComponent = () => {
   };
 
   return (
-    <div onClick={handleLeaveGame}>
+    <div onClick={handleLeaveGame} className="w-[74px] sm:w-fit">
       <SmallButton>Leave Game</SmallButton>
     </div>
   );

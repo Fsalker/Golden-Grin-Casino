@@ -16,5 +16,7 @@ export type AccountHistoryParams = {
   spanMinutes: number;
 };
 
-export const usernameTakenErrorMessage = 'Your username is already taken.';
-export const authenticationFailedErrorMessage = 'Authentication failed.';
+export const usernameTakenErrorMessage = "Your username is already taken.";
+export const authenticationFailedErrorMessage = "Authentication failed.";
+export const jwtInvalidErrorMessage =
+  "You must authenticate using a *valid* JWT in the 'authorization' request header, after logging in.";

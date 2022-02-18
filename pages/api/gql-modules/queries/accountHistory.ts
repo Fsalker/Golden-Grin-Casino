@@ -1,8 +1,12 @@
-import { AccountHistoryParams, JwtPayload } from '../types';
-import { AuthenticationError } from 'apollo-server-micro';
-import prisma from '../../../../prisma/prismaClient';
-import { isGameWon } from '../common';
-import { Game } from '@prisma/client';
+import {
+  AccountHistoryParams,
+  jwtInvalidErrorMessage,
+  JwtPayload,
+} from "../types";
+import { AuthenticationError } from "apollo-server-micro";
+import prisma from "../../../../prisma/prismaClient";
+import { isGameWon } from "../common";
+import { Game } from "@prisma/client";
 
 const getGameSpreeCount = (games: Game[]) => {
   if (games.length === 0) {
@@ -28,14 +32,18 @@ const getGameSpreeCount = (games: Game[]) => {
   return firstGameWon ? spree : -spree;
 };
 
-export default async (_: any, { spanMinutes }: AccountHistoryParams, { userId }: JwtPayload) => {
+export default async (
+  _: any,
+  { spanMinutes }: AccountHistoryParams,
+  { userId }: JwtPayload
+) => {
   if (!userId) {
-    throw new AuthenticationError(
-      "You must authenticate using a *valid* JWT in the 'authorization' request header, after logging in."
-    );
+    throw new AuthenticationError(jwtInvalidErrorMessage);
   }
 
-  const lowestAcceptedCreatedAt = new Date(new Date().getTime() - 1000 * 60 * spanMinutes);
+  const lowestAcceptedCreatedAt = new Date(
+    new Date().getTime() - 1000 * 60 * spanMinutes
+  );
   const games = await prisma.game.findMany({
     where: {
       userId,
@@ -43,7 +51,7 @@ export default async (_: any, { spanMinutes }: AccountHistoryParams, { userId }:
         gte: lowestAcceptedCreatedAt,
       },
     },
-    orderBy: { createdAt: 'desc' },
+    orderBy: { createdAt: "desc" },
   });
 
   const gameSpreeCount = getGameSpreeCount(games);

@@ -1,5 +1,5 @@
-import apolloClient from '../../utils/apolloClient';
-import { gql } from '@apollo/client';
+import apolloClient from "../../utils/apolloClient";
+import { gql } from "@apollo/client";
 
 type accountHistoryRequestParams = {
   spanMinutes: number;
@@ -8,7 +8,7 @@ type accountHistoryRequestParams = {
 export default async ({ spanMinutes }: accountHistoryRequestParams) => {
   const { data, errors } = await apolloClient.mutate({
     mutation: gql`
-      query($spanMinutes: Int!) {
+      query ($spanMinutes: Int!) {
         accountHistory(spanMinutes: $spanMinutes) {
           gamesPlayed
           winningStreak

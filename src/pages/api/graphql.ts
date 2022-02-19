@@ -5,11 +5,22 @@ import { resolvers } from "./gql-modules/resolvers";
 import { getJwtPayload, validateJwt } from "./gql-modules/auth";
 import { JwtPayload } from "./gql-modules/types";
 
+export const testApolloServer = new ApolloServer({
+  typeDefs,
+  resolvers,
+});
+
+export const testAuthenticatedApolloServer = new ApolloServer({
+  typeDefs,
+  resolvers,
+  context: { userId: "mocked" },
+});
+
 const apolloServer = new ApolloServer({
   typeDefs,
   resolvers,
   context: ({ req }) => {
-    const jwt: string = req.headers.authorization || "";
+    const jwt: string = req?.headers?.authorization || "";
     if (validateJwt(jwt)) {
       const jwtPayload: JwtPayload = getJwtPayload(jwt);
       return { userId: jwtPayload.userId };

@@ -23,8 +23,13 @@ export default async (_: any, __: any, { userId }: JwtPayload) => {
     .filter((cardValue) =>
       isCardValueAce({ cardValue, numCardsInDeck })
     ).length;
-  const gameState: GameStateType =
-    cardsLeft > 0 ? "in progress" : gameWon ? "won" : "lost";
+  const gameState: GameStateType = game.abandoned
+    ? "lost"
+    : cardsLeft > 0
+    ? "in progress"
+    : gameWon
+    ? "won"
+    : "lost";
 
   return {
     gameState,

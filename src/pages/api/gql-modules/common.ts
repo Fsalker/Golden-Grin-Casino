@@ -4,6 +4,7 @@ import { Game } from "@prisma/client";
 
 export const bcryptSaltRounds = 12;
 
+// Note: this function will only be used on games that are 100% closed / finished (ie: using it in query "currentGame" won't work)
 export const isGameAbandoned = (game: Game) =>
   game.abandoned || game.currentCardIndex !== game.deck.length;
 

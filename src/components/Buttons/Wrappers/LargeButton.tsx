@@ -11,8 +11,8 @@ const LargeButton: LargeButtonType<LargeButtonProps> = ({
   return (
     <div
       className={`cursor-pointer select-none font-alfaSlabOne
-    bg-game-yellow w-fit p-2 rounded-[14px] mt-4 text-[64px] px-16 ${
-      smallerOnSmallDevices ? "text-[32px]" : ""
+    bg-game-yellow w-fit p-2 rounded-[14px] mt-4 px-16 ${
+      smallerOnSmallDevices ? "text-[32px] sm:text-[64px]" : "text-[64px]"
     }`}
     >
       {children}

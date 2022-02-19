@@ -2,7 +2,7 @@ import { mutationDealCards } from "../../../../components/gql-requests/gql-queri
 import { jwtInvalidErrorMessage } from "../../../../pages/api/gql-modules/types";
 import { prismaMock } from "../../../../../prisma/prismaClientMocked";
 import { ApolloServerBase } from "apollo-server-core";
-import prisma from "../../../../../prisma/prismaClient";
+import { mockedNewGame, mockedFinishedGame } from "../../../../__mocks__";
 
 let testApolloServer: ApolloServerBase,
   testAuthenticatedApolloServer: ApolloServerBase;
@@ -31,7 +31,7 @@ it("Should return 'null' when we cannot deal cards", async () => {
 });
 
 it("Should return an array of cards", async () => {
-  prismaMock.game.findMany.mockReturnValue([mockedNewGame]);
+  prismaMock.game.findMany.mockReturnValueOnce([mockedNewGame]);
   prismaMock.game.update.mockReset();
   const { data } = await testAuthenticatedApolloServer.executeOperation({
     query: mutationDealCards,
@@ -40,16 +40,5 @@ it("Should return an array of cards", async () => {
   expect(data?.dealCards).toEqual(expect.any(Array));
   expect(data!.dealCards.length).toEqual(5);
 });
-
-const mockedNewGame = {
-  id: -288,
-  createdAt: new Date("2022-02-19T06:08:09.082Z"),
-  userId: -888,
-  deck: [10, 3, 0, 2, 8, 9, 4, 5, 7, 11, 6, 1],
-  currentCardIndex: 0,
-  abandoned: false,
-};
-
-const mockedFinishedGame = { ...mockedNewGame, currentCardIndex: 12 };
 
 // TODO (refactoring in 2067): test all 3 "return null" conditions

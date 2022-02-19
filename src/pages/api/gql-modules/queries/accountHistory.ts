@@ -56,8 +56,8 @@ export default async (
 
   const gameSpreeCount = getGameSpreeCount(games);
   const gamesPlayed = games.length;
-  const winningStreak = gameSpreeCount >= 0 ? gameSpreeCount : 0;
-  const losingStreak = gameSpreeCount <= 0 ? -gameSpreeCount : 0;
+  const winningStreak = gameSpreeCount > 0 ? gameSpreeCount : 0;
+  const losingStreak = gameSpreeCount < 0 ? -gameSpreeCount : 0;
 
   return {
     gamesPlayed,

@@ -1,24 +1,18 @@
 import apolloClient from "../../utils/apolloClient";
-import { gql } from "@apollo/client";
+import { queryAccountHistory } from "./gql-queries";
 
 type accountHistoryRequestParams = {
   spanMinutes: number;
 };
 
 export default async ({ spanMinutes }: accountHistoryRequestParams) => {
-  const { data, errors } = await apolloClient.mutate({
-    mutation: gql`
-      query ($spanMinutes: Int!) {
-        accountHistory(spanMinutes: $spanMinutes) {
-          gamesPlayed
-          winningStreak
-          losingStreak
-        }
-      }
-    `,
+  console.log("Querying for acc history...");
+  const { data, errors } = await apolloClient.query({
+    query: queryAccountHistory,
     variables: {
       spanMinutes,
     },
+    fetchPolicy: "no-cache",
   });
 
   return { data, errors };

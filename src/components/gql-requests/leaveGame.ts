@@ -1,13 +1,9 @@
 import apolloClient from "../../utils/apolloClient";
-import { gql } from "@apollo/client";
+import { mutationLeaveGame } from "./gql-queries";
 
 export default async () => {
   const { data, errors } = await apolloClient.mutate({
-    mutation: gql`
-      mutation {
-        leaveGame
-      }
-    `,
+    mutation: mutationLeaveGame,
   });
 
   return { data, errors };

@@ -1,15 +1,11 @@
 import apolloClient from "../../utils/apolloClient";
-import { gql } from "@apollo/client";
+import { mutationRegister } from "./gql-queries";
 
 export type RegisterRequestParams = { username: string; password: string };
 
 export default async ({ username, password }: RegisterRequestParams) => {
   const { data, errors } = await apolloClient.mutate({
-    mutation: gql`
-      mutation ($user: AccountInput!) {
-        register(accountInput: $user)
-      }
-    `,
+    mutation: mutationRegister,
     variables: {
       user: {
         username,

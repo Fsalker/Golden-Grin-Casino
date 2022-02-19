@@ -89,3 +89,27 @@ it("Should return 4 total games + 3 lost games", async () => {
   expect(data?.accountHistory?.winningStreak).toEqual(0);
   expect(data?.accountHistory?.losingStreak).toEqual(3);
 });
+
+it("Should return 0 total games", async () => {
+  prismaMock.game.findMany.mockReturnValueOnce([]);
+  prismaMock.game.update.mockReset();
+  const { data } = await testAuthenticatedApolloServer.executeOperation({
+    query: queryAccountHistory,
+    variables: { spanMinutes: 5 },
+  });
+  expect(data?.accountHistory?.gamesPlayed).toEqual(0);
+  expect(data?.accountHistory?.winningStreak).toEqual(0);
+  expect(data?.accountHistory?.losingStreak).toEqual(0);
+});
+
+it("Should return 1 total games + 0 won + 0 lost (1 in progress)", async () => {
+  prismaMock.game.findMany.mockReturnValueOnce([mockedNewGame]);
+  prismaMock.game.update.mockReset();
+  const { data } = await testAuthenticatedApolloServer.executeOperation({
+    query: queryAccountHistory,
+    variables: { spanMinutes: 5 },
+  });
+  expect(data?.accountHistory?.gamesPlayed).toEqual(1);
+  expect(data?.accountHistory?.winningStreak).toEqual(0);
+  expect(data?.accountHistory?.losingStreak).toEqual(0);
+});

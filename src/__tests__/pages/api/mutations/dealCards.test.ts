@@ -51,3 +51,5 @@ const mockedNewGame = {
 };
 
 const mockedFinishedGame = { ...mockedNewGame, currentCardIndex: 12 };
+
+// TODO (refactoring in 2067): test all 3 "return null" conditions

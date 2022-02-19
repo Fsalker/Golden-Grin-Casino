@@ -5,6 +5,7 @@ module.exports = {
     "!**/*.d.ts",
     "!**/node_modules/**",
   ],
+  setupFiles: ["./jest-init.ts"],
   coverageThreshold: {
     global: {
       branches: 60,

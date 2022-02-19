@@ -14,7 +14,7 @@ export const isGameWon = (game: Game) => {
   }
 
   const numCardsInDeck = game.deck.length;
-  const lastDrawnCards = game.deck.slice(-(game.deck.length % 5));
+  const lastDrawnCards = game.deck.slice(-(game.deck.length % 5) || -5); // Take the last [1, 2, 3, 4, 5] cards
   const gameWon = !!lastDrawnCards.filter((cardValue: number) =>
     isCardValueAce({ cardValue, numCardsInDeck })
   ).length;

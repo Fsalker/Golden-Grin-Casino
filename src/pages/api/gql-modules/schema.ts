@@ -25,8 +25,8 @@ export const typeDefs = gql`
 
   type GamePublicData {
     gameState: String
-    cardsLeft: String
-    acesLeft: String
+    cardsLeft: Int
+    acesLeft: Int
   }
 
   type AccountHistory {

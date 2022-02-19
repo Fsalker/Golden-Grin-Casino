@@ -20,9 +20,7 @@ const DrawnCards: FunctionComponent = () => {
   useEffect(() => {
     const handleResize = () => {
       const newWindowWidth = window.innerWidth;
-      if (windowWidth !== newWindowWidth) {
-        setWindowWidth(newWindowWidth);
-      }
+      setWindowWidth(newWindowWidth);
     };
 
     window.addEventListener("resize", handleResize);

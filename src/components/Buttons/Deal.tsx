@@ -59,7 +59,7 @@ const Deal: ButtonComponent = () => {
 
   return (
     <div className="flex flex-col items-center">
-      <div onClick={handleDeal}>
+      <div data-testid="deal-button" onClick={handleDeal}>
         <LargeButton>DEAL</LargeButton>
       </div>
     </div>

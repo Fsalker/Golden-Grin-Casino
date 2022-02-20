@@ -67,7 +67,6 @@ const AccountForm: FunctionComponent = () => {
       </div>
       <div>
         <input
-          id="dhfsdhi"
           className="w-full"
           type="password"
           placeholder="Your password..."

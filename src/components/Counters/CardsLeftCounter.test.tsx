@@ -3,7 +3,7 @@ import CardsLeftCounter from "./CardsLeftCounter";
 import { RecoilRoot, SetRecoilState } from "recoil";
 import { cardsLeftState } from "../../recoil/atoms";
 
-it("Renders Counter", () => {
+it("Should render Cards Counter", () => {
   const initializeState = ({ set }: { set: SetRecoilState }) => {
     set(cardsLeftState, 2);
   };

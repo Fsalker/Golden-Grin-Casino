@@ -3,7 +3,7 @@ import AcesLeftCounter from "./AcesLeftCounter";
 import { RecoilRoot, SetRecoilState } from "recoil";
 import { acesLeftState } from "../../recoil/atoms";
 
-it("Renders Counter", () => {
+it("Should render Aces Counter", () => {
   const initializeState = ({ set }: { set: SetRecoilState }) => {
     set(acesLeftState, 3);
   };

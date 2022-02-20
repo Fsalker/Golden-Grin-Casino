@@ -6,7 +6,6 @@ type accountHistoryRequestParams = {
 };
 
 export default async ({ spanMinutes }: accountHistoryRequestParams) => {
-  console.log("Querying for acc history...");
   const { data, errors } = await apolloClient.query({
     query: queryAccountHistory,
     variables: {

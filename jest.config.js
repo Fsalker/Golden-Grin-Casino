@@ -5,7 +5,7 @@ module.exports = {
     "!**/*.d.ts",
     "!**/node_modules/**",
   ],
-  setupFiles: ["./jest-init.ts"],
+  setupFilesAfterEnv: ["./jest-init.ts"],
   coverageThreshold: {
     global: {
       branches: 60,
@@ -13,6 +13,7 @@ module.exports = {
       lines: 60,
     },
   },
+  testMatch: ["**/*.test.ts?(x)"],
   moduleNameMapper: {
     // Handle CSS imports (with CSS modules)
     // https://jestjs.io/docs/webpack#mocking-css-modules

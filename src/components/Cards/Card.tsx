@@ -55,6 +55,7 @@ const Card: FunctionComponent<CardParams> = ({
         <div className="sm:mt-[-13px] mt-[-5px] sm:ml-[37px] ml-[20px] text-[56px] leading-[56px]">
           {/*{cardSymbol}*/}
           <img
+            alt="Small card symbol image"
             src={cardSymbolSrc}
             className="sm:w-[36px] w-[19px] sm:h-[36px] h-[19px]"
           />
@@ -62,6 +63,7 @@ const Card: FunctionComponent<CardParams> = ({
         <div className="mt-0 sm:ml-[71px] ml-[38px] text-[130px]">
           {/*{cardSymbol}*/}
           <img
+            alt="Large card symbol image"
             src={cardSymbolSrc}
             className="sm:w-[90px] w-[48px] sm:h-[90px] h-[48px]"
           />

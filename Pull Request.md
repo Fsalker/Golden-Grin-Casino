@@ -22,7 +22,7 @@ Run these CLI commands in the project's root directory:
 More info: https://nextjs.org/docs/deployment#docker-image	
 
 <!--- Please explain the choices and tradeoffs you made, libraries, what could be done better with more time, etc. -->
-#### Tech Stack
+## Tech Stack
 
 - **Omnipresent**: NextJs
 - **Front End**: React / Tailwindcss / Recoil / Apollo Client
@@ -65,12 +65,9 @@ _(Note: the received **mail**(s), `README.md` and `PULL_REQUEST_TEMPLATE` all pr
 <!--- https://chris.beams.io/posts/git-commit/ -->
 <!--- In short: first line ~50 chars, then blank line, then bullets or paragraph summarizing. -->
 
-
-
-
-* Estimated time taken to do this exercise: too long (30h+) <!--- (please separate for frontend/backend if doing both) -->
-
 ## Screenshots
+
+* Estimated time taken to do this exercise: too long (30h+); 50%+ of it was configuring the project <!--- (please separate for frontend/backend if doing both) -->
 
 <!-- Please attach screenshots and recordings (animated gifs, mp4s - GitHub supports these). -->
 ![1](https://user-images.githubusercontent.com/16700631/154897632-20ea6a0c-f170-4d9a-981b-48c30e53f496.jpg)
